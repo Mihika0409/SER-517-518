@@ -36,5 +36,10 @@ df = pd.read_csv('csv.csv')
 df1 = df.ix[:, 19:20].dropna(axis=0, how='any')
 df1 = df1.rename(columns = {'Unnamed: 19':'Comments'})
 
+#Remove stop words. (No, not, etc also being removed atm. Need to fix that)
+stopWords = set(stopwords.words('english'))
+df1['Comments'] = df1['Comments'].str.lower().str.split()
+df1['Comments'] = df1['Comments'].apply(lambda x: [item for item in x if item not in stopWords])
+
 for index, row in df1.iterrows():
     print row['Comments']
