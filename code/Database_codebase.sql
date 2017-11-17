@@ -1,3 +1,4 @@
+# command for creating a database/ schema 
 create schema Trauma;
 
 
