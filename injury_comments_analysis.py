@@ -22,7 +22,7 @@ dataframe1 = dataframe[['levels', 'trauma_type', 'feild_GCS', 'age','injury_comm
 dataframe1 = dataframe1.rename(columns={'injury_comments': 'Injury Comments'})
 dataframe1 = dataframe1.rename(columns={'levels': 'Levels'})
 dataframe1 = dataframe1.rename(columns={'feild_GCS': 'GCS'})
-dataframe1.to_csv('Comments1.csv')
+# dataframe1.to_csv('Comments1.csv')
 
 dataframe2 = dataframe[['levels', 'injury_comments']].dropna(axis=0, how='any')
 dataframe2 = dataframe2.rename(columns={'injury_comments': 'Injury Comments'})
