@@ -140,3 +140,147 @@ print burn
 print penetrating
 print blunt
 print other
+count = 0
+count1 = 0
+count2 = 0
+dead = 0
+alive = 0
+
+#Trauma level analysis on patients who are positioned in the front seat passenger in a motor vehicle accident.
+with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+    for row in csv.reader(inp):
+        if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
+            continue
+        elif row[10] == "Front Seat Passenger":
+            count = count + 1
+            if row[38].strip() == "D":
+                dead = dead + 1
+            elif row[38].strip() == "L":
+                alive = alive + 1
+            if row[4] == "1":
+                count1 = count1 + 1
+            elif row[4] == "2":
+                count2 = count2 + 1
+
+print count
+print count1
+print count2
+print dead
+print alive
+
+count = 0
+count1 = 0
+count2 = 0
+dead = 0
+alive = 0
+
+#Trauma level analysis on patients who are in driver position in a motor vehicle accident.
+with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+    for row in csv.reader(inp):
+        if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
+            continue
+        elif row[10] == "Driver of Motor Vehicle (auto/truck/van) - not motorcycle":
+            count = count + 1
+            if row[38].strip() == "D":
+                dead = dead + 1
+            elif row[38].strip() == "L":
+                alive = alive + 1
+            if row[4] == "1":
+                count1 = count1 + 1
+            elif row[4] == "2":
+                count2 = count2 + 1
+
+print count
+print count1
+print count2
+print dead
+print alive
+
+count = 0
+count1 = 0
+count2 = 0
+dead = 0
+alive = 0
+count3 = 0
+#Trauma level analysis on patients who are in Back Seat in a motor vehicle accident.
+with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+    for row in csv.reader(inp):
+        if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
+            continue
+        elif row[10] == "Back Seat Passenger (anyone inside except front seat)":
+            count = count + 1
+            if row[38].strip() == "D":
+                dead = dead + 1
+            elif row[38].strip() == "L":
+                alive = alive + 1
+            if row[4] == "1":
+                count1 = count1 + 1
+                if row[9].strip() == "*NA" or row[9].strip() == "*ND" or row[9].strip() == "*BL" or row[9] == "":
+                    continue
+                else:
+                    count3 = count3 + 1
+            elif row[4] == "2":
+                count2 = count2 + 1
+
+print count
+print count1
+print count2
+print dead
+print alive
+print count3
+
+count = 0
+count1 = 0
+count2 = 0
+dead = 0
+alive = 0
+
+#Trauma level analysis on patients who are bicyclist in a motor vehicle accident.
+with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+    for row in csv.reader(inp):
+        if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
+            continue
+        elif row[10] == "Bicyclist (non-motorized)":
+            count = count + 1
+            if row[38].strip() == "D":
+                dead = dead + 1
+            elif row[38].strip() == "L":
+                alive = alive + 1
+            if row[4] == "1":
+                count1 = count1 + 1
+            elif row[4] == "2":
+                count2 = count2 + 1
+
+print count
+print count1
+print count2
+print dead
+print alive
+
+count = 0
+count1 = 0
+count2 = 0
+dead = 0
+alive = 0
+
+#Trauma level analysis on patients who position is not specified in a motor vehicle accident.
+with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+    for row in csv.reader(inp):
+        if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
+            continue
+        elif row[10] == "Position in Motor Vehicle Not Specified":
+            count = count + 1
+            if row[38].strip() == "D":
+                dead = dead + 1
+            elif row[38].strip() == "L":
+                alive = alive + 1
+            if row[4] == "1":
+                count1 = count1 + 1
+            elif row[4] == "2":
+                count2 = count2 + 1
+
+print count
+print count1
+print count2
+print dead
+print alive
