@@ -1,4 +1,4 @@
-
+import numpy
 import pandas as pd
 import numpy as np
 import seaborn as sb
@@ -6,11 +6,14 @@ import matplotlib.pyplot as plt
 from xlrd import open_workbook
 import unicodecsv
 import csv
+
+#To find the pearson corelation between The motor vehicle speed and the trauma level.
 df = pd.read_csv('/Users/satishnandan/Desktop/TraumaActivation/mv2.csv')
 cols = ['MV Speed','Levels']
 cor_matrix = np.corrcoef(df[cols].values.T)
 print cor_matrix
 
+#will remove not available, no data and blank entries from airbag column.
 with open('/Users/satishnandan/Desktop/TraumaActivation/test.csv', 'rb') as inp, open('/Users/satishnandan/Desktop/TraumaActivation/airbag.csv', 'wb') as out:
     writer = csv.writer(out)
     for row in csv.reader(inp):
@@ -19,9 +22,10 @@ with open('/Users/satishnandan/Desktop/TraumaActivation/test.csv', 'rb') as inp,
         else:
             writer.writerow(row)
 
+
+#will analyse the total count of patients given level 1 and level 2 treatment when airbag is deployed in motor vehicle accident.
 count = 0
 count1 = 0
-count2 = 0
 with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[9].strip() == "*NA" or row[9].strip() == "*ND" or row[9].strip() == "*BL":
@@ -34,21 +38,6 @@ with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
 
 print "Trauma Level 1 are: " + str(count)
 print "Trauma Level 2 are:" + str(count1)
-# from nltk.corpus import stopwords
-# from nltk.tokenize import word_tokenize
-
-# Sample to run stop words.
-'''data = "All work and no play makes jack a dull boy."
-stopWords = set(stopwords.words('english'))
-words = word_tokenize(data)
-wordsFiltered = []
-
-for w in words:
-    if w not in stopWords:
-        wordsFiltered.append(w)
-
-print(wordsFiltered)'''
-
 
 # Converts the xls file to csv
 def xls2csv(xls_filename, csv_filename):
@@ -64,13 +53,7 @@ def xls2csv(xls_filename, csv_filename):
 
 csv_file = xls2csv('/Users/satishnandan/Desktop/TraumaActivation/Copy of Stacked Trauma data.xlsx', '/Users/satishnandan/Desktop/TraumaActivation/newData.csv')
 
-# creates a new dataframe with just comments
-df = pd.read_csv('csv.csv')
-df1 = df.ix[:, 19:20].dropna(axis=0, how='any')
-df1 = df1.rename(columns={'Unnamed: 19': 'Comments'})
-
-for index, row in df1.iterrows():
-    print row['Comments']
+#Will plot the graph between trauma levels and Motor vehicle speed.
 headers = ['Levels','MV Speed']
 df = pd.read_csv('/Users/satishnandan/Desktop/TraumaActivation/mv2.csv')
 x = df['MV Speed']
@@ -89,6 +72,8 @@ dataset[temp] = dataset[temp].replace("*BL", numpy.NaN)
 dataset.dropna(inplace=True)
 # summarize the number of rows and columns in the dataset
 print(dataset.shape)
+
+#Will check the relation between motor vehicle speed and fall height.
 count1 = 0
 with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
     for row in csv.reader(inp):
@@ -98,10 +83,9 @@ with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
             if row[14].strip() == "*NA" or row[14].strip() == "*ND" or row[14].strip() == "*BL" or row[14].strip() == "":
                 continue
             else:
-                print row
 
                 count1 = count1 + 1
-
+#Will count the total number of patients that are alive or dead after the treatment in motor vehicle accident.
 with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
@@ -111,6 +95,8 @@ with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
                 dead = dead + 1
             elif row[38].strip() == "L":
                 alive = alive + 1
+
+#function to check of the string is a floating point number or not.
 def is_number(s):
     try:
         float(s)
@@ -118,6 +104,7 @@ def is_number(s):
     except ValueError:
         return False
 
+#will count the total number of patients whose field shock is less than 0.75 and who who were given level 1 treatment.
 with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
@@ -128,11 +115,13 @@ with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
                     count = count + 1
                     if row[4] == "1":
                         count1 = count1 + 1
+
+
 burn = 0
 penetrating = 0
 blunt = 0
 other = 0
-
+#Will count the trauma type in motor vehicle accidents.
 with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
