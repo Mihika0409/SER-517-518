@@ -104,3 +104,120 @@ print blunt_count_level3
 print "the level N count of blunt is: "
 print blunt_count_levelN
 
+# Visualizing the assault data
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+objects = ("Penetrating", "Blunt")
+y_pos = np.arange(len(objects))
+counts = [pen_count, blunt_count]
+plt.bar(y_pos, counts, align='center', alpha=0.5, width=0.35)
+plt.xticks(y_pos, objects)
+plt.ylabel('Trauma')
+plt.show()
+
+# Plots to show blunt and penetration data side by side
+# data to plot
+n_groups = 4
+means_penetration = (pen_count_level1, pen_count_level2, pen_count_level3, pen_count_levelN)
+means_blunt = (blunt_count_level1, blunt_count_level2, blunt_count_level3, blunt_count_levelN)
+
+# create plot
+fig, ax = plt.subplots()
+index = np.arange(n_groups)
+bar_width = 0.35
+opacity = 0.8
+
+rects1 = plt.bar(index, means_penetration, bar_width,
+                 alpha=opacity,
+                 color='b',
+                 label='Penetration')
+
+rects2 = plt.bar(index + bar_width, means_blunt, bar_width,
+                 alpha=opacity,
+                 color='g',
+                 label='Blunt')
+
+plt.xlabel('Types of Assault')
+plt.ylabel('Scores')
+plt.title('Assault Data')
+plt.xticks(index + bar_width, ('Level1', 'Level2', 'Level3', 'LevelN'))
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+# Plot to show the line graph for field SBP
+
+print '-----------------'
+sbp = df['field_SBP']
+level1_sbp = []
+level2_sbp = []
+level3_sbp = []
+levelN_sbp = []
+
+
+for i in range(0, len(sbp)):
+    if traumaLevel[i] == '1':
+        level1_sbp.append(sbp[i])
+    elif traumaLevel[i] == '2':
+        level2_sbp.append(sbp[i])
+    elif traumaLevel[i] == '3':
+        level3_sbp.append(sbp[i])
+    elif traumaLevel[i] == 'N':
+        levelN_sbp.append(sbp[i])
+
+from pylab import *
+
+t1 = arange(len(level1_sbp))
+t2 = arange(len(level2_sbp))
+t3 = arange(len(level3_sbp))
+tn = arange(len(levelN_sbp))
+
+plot(t1, level1_sbp, color='red', label='level1')
+plot(t2, level2_sbp, color='blue', label='level2')
+plot(t3, level3_sbp, color='yellow', label='level3')
+plot(tn, levelN_sbp, color='black', label='levelN')
+
+xlabel('Item (s)')
+ylabel('SBP Value')
+title('Trauma Levels for Assault vs the Field SBP Levels')
+grid(True)
+legend()
+show()
+
+# Plot to show the line graph for Total Length of stay in the hospital
+
+LOS = df['total_LOS']
+level1_los = []
+level2_los = []
+level3_los = []
+levelN_los = []
+
+for i in range(0, len(LOS)):
+    if traumaLevel[i] == '1':
+        level1_los.append(LOS[i])
+    elif traumaLevel[i] == '2':
+        level2_los.append(LOS[i])
+    elif traumaLevel[i] == '3':
+        level3_los.append(LOS[i])
+    elif traumaLevel[i] == 'N':
+        levelN_los.append(LOS[i])
+
+l1 = arange(len(level1_los))
+l2 = arange(len(level2_los))
+l3 = arange(len(level3_los))
+ln = arange(len(levelN_los))
+
+plot(l1, level1_los, color='red', label='level1')
+plot(l2, level2_los, color='blue', label='level2')
+plot(l3, level3_los, color='yellow', label='level3')
+plot(ln, levelN_los, color='black', label='levelN')
+
+xlabel('Item (s)')
+ylabel('Length of Stay (in days)')
+title('Trauma Levels for Assault vs Length of stay in the hospital')
+grid(True)
+legend()
+show()
