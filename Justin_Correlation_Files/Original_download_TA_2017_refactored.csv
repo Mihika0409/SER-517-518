@@ -1,0 +1,121 @@
+Age,Age + Units,Gender,ED/Hosp Arrival Time,Time of Injury,Trauma Type,ICD E-Code,NTDB E-code Groupings,ICD E-Code Text,MV Speed,Fall Height,Protective Devices,Patient Position in Vehicle,Report of physical abuse?,Transport Type,Transport Mode,Pulse,RR,SBP,GCS,Intubated < Vitals?,Paralytic < Vitals?,Total EMS Time (mins.),Transport From (Origin),Interfacility Transfer by EMS?,Length of Stay (Hrs) in Referring Hospital,Levels,Consulting Service,Heart Rate,Respiratory Rate - Vital Signs,Resp Assistance,Intubated?,Systolic Blood Pressure,GCS Total,Revised Trauma Score,O2 Saturation,Location,Procedure Performed (ICD10 Code),Service,Time to 1st OR Visit (mins.),Time to Proc (ED Arrival) Min,AIS 2005 Severity,AIS 2005 Body Part,ICD10 Dx Code,Injury Severity Score,ICD9 + AIS + Body Part,Discharge Disposition,Final Outcome-Dead or Alive,Admission Hosp LOS (days),Total Days in ICU,Total Vent Days,ICD E-Code Text,Activity E-Code,Activity E-Code Text
+16,16 Y,M,1:35,*ND,N,*BL,*BL,*BL,*NA,*NA,NONE,*NA,N,OTHER,POV_WALK-IN,*NA,*NA,*NA,*NA,*NA,*NA,*NA,INJ_SCENE,Y,*ND,N,OPTHO,71,20,1,N,124,15,7.84,99,RAD,BN25ZZZ,*BL,*BL,675,1,2,T26.11XA,4,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+14,14 Y,F,7:38,4:30,P,*BL,*BL,*BL,*NA,*NA,NONE,*NA,N,INTO_REPT_HOSP,GRND_AMB,*ND,*ND,*ND,*ND,*ND,*ND,*ND,REFER_FAC,Y,*NA,1,KIDS/GENPEDS,86,16,1,N,108,15,7.84,100,ED,BN25ZZZ,PLASTIC SURGERY,*BL,87,1,6,T26.01XA,2,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+9,9 Y,M,16:57,16:50,B,*BL,*BL,*BL,*ND,*NA,NONE,*NA,N,OTHER,POV_WALK-IN,*NA,*NA,*NA,*NA,*NA,*NA,*NA,INJ_SCENE,N,2,N,PLASTICS,110,30,1,N,134,15,7.55,100,REF,BN251ZZ,PLASTIC SURGERY,*NA,*BL,1,2,S01.411A,1,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+27,27 D,F,19:17,18:00,B,*BL,*BL,*BL,*NA,2,NONE,*NA,N,INTO_REPT_HOSP,HELIC_AMB,82,78,108,15,N,N,*ND,REFER_FAC,N,*NA,N,SOCIAL,154,31,1,N,118,15,7.55,98,ED,0CQ6XZZ,PEDIATRIC SURGERY,*BL,59,1,6,S01.512A,1,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+2,2 Y,F,20:11,*ND,B,*BL,*BL,*BL,*NA,*NA,NONE,*NA,N,INTO_REPT_HOSP,GRND_AMB,*ND,*ND,*ND,*ND,*ND,*ND,*ND,INJ_SCENE,Y,*NA,N,*BL,118,20,1,N,110,15,7.84,100,ED,0CQ4XZZ,*NA,710,710,1,2,S71.112A,4,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+5,5 Y,M,23:14,*ND,B,*BL,*BL,*BL,*NA,*ND,NONE,*NA,N,FIRST_RESP,*NA,*ND,*ND,*ND,*ND,*ND,*ND,*ND,*NA,Y,*NA,N,*BL,91,20,1,N,105,15,7.84,99,ED,0HQJXZZ,*BL,577,577,1,6,S80.12XA,4,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+4,4 Y,M,0:39,*ND,B,*BL,*BL,*BL,*ND,*NA,NONE,*NA,N,INTO_REPT_HOSP,GRND_AMB,*NA,24,*NA,15,N,N,53,INJ_SCENE,N,*NA,2,KIDS/GENPEDS,115,18,1,N,117,15,7.84,100,*NA,*NA,ORTHOPEDICS,2440,14,1,6,S80.11XA,9,*BL,HOME,L,11,3,*NA,*BL,*BL,*BL
+4,4 Y,M,1:09,*ND,B,*BL,*BL,*BL,*ND,*NA,NONE,*NA,N,OTHER,POV_WALK-IN,120,*NA,*ND,*NA,*NA,*NA,*NA,INJ_SCENE,N,*NA,1,ORTHO,156,27,2,Y,60,3,2.63,100,ED,BW28ZZZ,ORTHOPEDICS,105,14,1,6,S90.411A,14,*BL,EXPIRED,D,1,*NA,1,*BL,*BL,*BL
+3,3 Y,M,5:32,*ND,B,*BL,*BL,*BL,*ND,*NA,NONE,*NA,N,INTO_REPT_HOSP,GRND_AMB,*NA,28,*NA,15,N,N,78,REFER_FAC,Y,4,2,KIDS/GENPEDS,120,22,1,N,93,15,7.84,98,OR,0PSG34Z,PEDIATRIC SURGERY,*BL,14,1,6,S09.90XA,10,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+2,2 Y,F,15:20,*ND,B,*BL,*BL,*BL,*NA,*ND,NONE,*NA,N,OTHER,POV_WALK-IN,85,*NA,108,*NA,*NA,*NA,*NA,INJ_SCENE,Y,*NA,N,ORTHO,97,24,1,N,80,15,7.11,98,OR,0PSG34Z,PEDIATRIC SURGERY,*NA,2440,9,1,S42.412A,1,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+14,14 Y,M,23:45,19:30,B,*BL,*BL,*BL,*NA,*NA,NONE,*NA,N,INTO_REPT_HOSP,HELIC_AMB,*NA,18,*NA,15,N,N,*ND,REFER_FAC,Y,5,N,SOCIAL,84,20,1,N,139,15,7.84,100,ED,BR20ZZZ,PEDIATRIC SURGERY,550,3499,2,5,S42.412A,4,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+5,5 Y,F,22:30,22:00,B,*BL,*BL,*BL,*NA,*ND,NONE,*NA,N,OTHER,POV_WALK-IN,*ND,*NA,*ND,*NA,*NA,*NA,*NA,INJ_SCENE,N,*NA,N,PT,129,22,1,N,107,15,7.84,100,ED,BW28ZZZ,PEDIATRIC SURGERY,559,105,2,5,S36.438A,4,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+3,3 Y,F,3:43,2:44,B,*BL,*BL,*BL,*NA,*NA,NONE,*NA,N,OTHER,GRND_AMB,120,*ND,138,*ND,*ND,*ND,*ND,EMS_REND,N,*NA,N,NUTRITION,102,18,1,N,98,15,7.84,100,ED,BW211ZZ,PEDIATRIC SURGERY,*BL,21,3,4,S30.811A,1,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+2,2 M,M,8:08,7:05,B,*BL,*BL,*BL,75,*NA,NONE,FRONT_SEAT_MV,N,INTO_REPT_HOSP,HELIC_AMB,*NA,20,*NA,15,N,N,120,EMS_REND,N,*NA,2,CHILDLIFE,198,27,1,N,102,14,7.84,100,OR,0DBB0ZZ,PEDIATRIC SURGERY,32232,21,1,6,S30.1XXA,21,*BL,HOME,L,52,35,31,*BL,*BL,*BL
+9,9 Y,M,12:03,8:45,B,*BL,*BL,*BL,*NA,6,NONE,*NA,N,OTHER,POV_WALK-IN,*ND,*NA,*ND,*NA,*NA,*NA,*NA,INJ_SCENE,N,*NA,N,KIDS/GENPEDS,74,20,1,N,124,15,7.84,99,ICU,05H733Z,PEDIATRIC SURGERY,145,21,1,6,S01.81XA,4,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+16,16 Y,M,13:18,12:40,B,*BL,*BL,*BL,10,*NA,NONE,ATV_RIDER,N,OTHER,GRND_AMB,177,*ND,69,*ND,*ND,*ND,*ND,EMS_REND,N,*NA,2,CRITICALCARE MD,72,16,1,N,141,15,7.84,99,OR,0W9G0ZZ,PEDIATRIC SURGERY,*BL,105,2,6,S06.0X9A,5,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+4,4 Y,F,20:20,19:20,B,*BL,*BL,*BL,*NA,6,NONE,*NA,N,INTO_REPT_HOSP,HELIC_AMB,*NA,8,*NA,7,N,N,79,EMS_REND,N,5,N,SOCIAL,110,21,1,N,121,15,7.84,100,ED,BW28ZZZ,PEDIATRIC SURGERY,*BL,16,1,1,S80.01XA,4,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+14,14 Y,M,21:34,14:00,B,*BL,*BL,*BL,45,*NA,HELMET,ATV_RIDER,N,OTHER,POV_WALK-IN,*ND,*NA,*ND,*NA,*NA,*NA,*NA,INJ_SCENE,Y,*NA,2,CHILDLIFE,80,10,1,N,115,15,7.84,98,ED,BR20ZZZ,PEDIATRIC SURGERY,*BL,105,1,6,S80.11XA,5,*BL,HOME,L,3,*NA,*NA,*BL,*BL,*BL
+2,2 M,M,21:45,*ND,B,*BL,*BL,*BL,*NA,*NA,EYE PROTECTION,*NA,Y,OTHER,GRND_AMB,140,*ND,85,*ND,*ND,*ND,*ND,EMS_REND,Y,2,3,SOCIAL,162,33,1,N,85,15,6.82,100,ED,BW211ZZ,PEDIATRIC SURGERY,5554,105,1,6,S00.81XA,20,*BL,HOME,L,23,16,11,*BL,*BL,*BL
+3,3 Y,M,2:08,18:00,B,*BL,*BL,*BL,*NA,*ND,PROTECTIVE NON-,*NA,N,INTO_REPT_HOSP,HELIC_AMB,*NA,20,*NA,15,N,N,146,REFER_FAC,Y,*NA,N,*BL,125,22,1,N,110,15,7.84,97,OR,02QA0ZZ,PEDIATRIC SURGERY,*BL,34,1,6,S00.81XA,1,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+15,15 Y,F,10:22,9:30,B,*BL,*BL,*BL,*NA,*NA,NONE,*NA,N,OTHER,POV_WALK-IN,140,*NA,130,*NA,*NA,*NA,*NA,HOME,N,3,N,KIDS/GENPEDS,98,18,1,N,124,15,7.84,100,ED,06HM33Z,*BL,*BL,105,1,6,S26.90XA,17,*BL,HOME,L,1,2,*NA,*BL,*BL,*BL
+12,12 M,F,16:56,13:15,B,*BL,*BL,*BL,*NA,2,NONE,*NA,N,INTO_REPT_HOSP,GRND_AMB,*ND,24,*ND,15,N,N,63,REFER_FAC,N,*NA,N,ORTHO,127,28,1,N,130,15,7.84,98,OR,0W9B3ZZ,*NA,*BL,105,9,3,S30.0XXA,1,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+14,14 Y,F,18:49,12:00,B,*BL,*BL,*BL,*NA,*NA,NONE,*NA,N,OTHER,*ND,96,*ND,134,*ND,*ND,*ND,*ND,INJ_SCENE,Y,*NA,2,PT,140,20,1,N,104,15,7.84,93,OR,0W993ZZ,ORTHOPEDICS,1243,105,1,6,S36.893A,14,*BL,HOME,L,5,*NA,*NA,*BL,*BL,*BL
+12,12 Y,M,20:00,14:30,B,*BL,*BL,*BL,*NA,6,NONE,*NA,N,INTO_REPT_HOSP,GRND_AMB,*NA,18,*NA,*ND,N,N,61,REFER_FAC,Y,*NA,N,ORTHO,88,14,1,N,129,15,7.84,96,ED,30233N1,ORTHOPEDICS,701,105,4,4,S36.438A,5,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+7,7 Y,M,8:47,*ND,B,*BL,*BL,*BL,40,*NA,NONE,BACK_SEAT_MV,N,INTO_REPT_HOSP,POV_WALK-IN,88,*NA,100,*NA,*NA,*NA,*NA,INJ_SCENE,N,*NA,3,KIDS/GENPEDS,113,24,1,N,124,15,7.84,98,OR,30233K1,ORTHOPEDICS,*BL,105,4,4,S30.811A,6,*BL,HOME,L,2,*NA,*NA,*BL,*BL,*BL
+27,27 Y,F,8:56,*ND,B,*BL,*BL,*BL,40,*NA,NONE,DRIVER_AUTO,N,INTO_REPT_HOSP,GRND_AMB,164,22,*ND,15,N,N,55,INJ_SCENE,N,*NA,N,*BL,*ND,16,1,N,90,15,7.84,98,OR,30233R1,EMERGENCY,*BL,0,1,6,S30.1XXA,2,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+6,6 Y,F,16:15,11:30,B,*BL,*BL,*BL,*NA,*NA,LAP BELT,*NA,N,FIRST_RESP,*NA,145,28,86,*ND,N,N,*ND,*NA,Y,*NA,N,SOCIAL,89,16,1,N,96,15,7.84,99,OR,3E080GC,NEURO SURGERY,*BL,*BL,1,6,S32.018A,5,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+11,11 Y,M,16:15,11:30,B,*BL,*BL,*BL,*NA,*NA,SHOULDER BELT,*NA,N,INTO_REPT_HOSP,HELIC_AMB,*NA,36,*NA,14,N,N,*NA,INJ_SCENE,Y,*NA,3,SPEECH,102,20,1,N,114,15,7.84,100,OR,5A12012,CRITICAL CARE,*BL,*BL,2,4,S32.028A,10,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+2,2 Y,M,13:56,*ND,B,*BL,*BL,*BL,*NA,*NA,CHILD RESTRAINT,*NA,N,INTO_REPT_HOSP,POV_WALK-IN,80,*NA,134,*NA,*NA,*NA,*ND,REFER_FAC,N,*NA,N,PT/OT,151,27,1,N,100,15,7.84,100,OR,5A2204Z,CRITICAL CARE,*BL,550,2,4,S70.12XA,1,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+15,15 Y,F,14:55,*ND,B,*BL,*BL,*BL,*NA,*NA,AIRBAG,*NA,N,INTO_REPT_HOSP,GRND_AMB,86,20,113,15,N,N,54,INJ_SCENE,N,*NA,N,NUTRITION,84,20,1,N,127,15,7.84,100,ED,5A1935Z,CRITICAL CARE,*BL,550,1,6,S22.31XA,5,*BL,*NA,L,*NA,*NA,*NA,*BL,*BL,*BL
+2,2 Y,M,23:14,18:30,B,*BL,*BL,*BL,*NA,*NA,LAP BELT,*NA,N,INTO_REPT_HOSP,GRND_AMB,*NA,22,*NA,*ND,N,N,*NA,INJ_SCENE,N,*NA,N,CHILDLIFE,108,20,1,N,122,15,7.84,100,REF,BW25ZZZ,CRITICAL CARE,980,559,1,3,S27.321A,4,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+12,12 Y,M,23:40,21:00,P,*BL,*BL,*BL,*NA,*NA,SHOULDER BELT,*NA,N,OTHER,POV_WALK-IN,67,*NA,103,*NA,*NA,*NA,119,INJ_SCENE,N,*NA,N,NEUROSURGERY,81,16,1,N,139,15,7.84,99,REF,BR20ZZZ,NEURO SURGERY,611,*BL,2,3,S20.412A,2,*BL,HOME,L,1,*NA,*NA,*BL,*BL,*BL
+,,,,,,,,,,,AIRBAG,,,INTO_REPT_HOSP,HELIC_AMB,*NA,18,*NA,15,N,N,*NA,REFER_FAC,,*NA,,CRITICALCARE MD,,,,,,,,,REF,BW28ZZZ,NEURO SURGERY,,32232,1,6,S20.221A,,,,,,,,,,
+,,,,,,,,,,,NONE,,,OTHER,POV_WALK-IN,165,*NA,107,*NA,*NA,*NA,63,INJ_SCENE,,*NA,,NEUROCC,,,,,,,,,*NA,*NA,NEURO SURGERY,,412,1,6,S80.01XA,,,,,,,,,,
+,,,,,,,,,,,NONE,,,INTO_REPT_HOSP,HELIC_AMB,*NA,50,*NA,14,N,N,*NA,REFER_FAC,,6,,NEUROLOGY,,,,,,,,,*NA,*NA,NEURO SURGERY,,1552,1,6,S00.81XA,,,,,,,,,,
+,,,,,,,,,,,NONE,,,OTHER,POV_WALK-IN,120,*NA,94,*NA,*NA,*NA,55,INJ_SCENE,,*NA,,PALLIATIVE,,,,,,,,,OR,0QSJ34Z,NEURO SURGERY,,1552,1,6,S82.831A,,,,,,,,,,
+,,,,,,,,,,,NONE,,,INTO_REPT_HOSP,GRND_AMB,117,24,114,15,N,N,*ND,REFER_FAC,,2,,KIDS/GENPEDS,,,,,,,,,OR,0QSG34Z,NEURO SURGERY,,312,2,5,S82.101A,,,,,,,,,,
+,,,,,,,,,,,NONE,,,INTO_REPT_HOSP,GRND_AMB,150,18,117,15,N,N,*NA,INJ_SCENE,,*NA,,GASTRO,,,,,,,,,OR,0PSJXZZ,NEURO SURGERY,,3412,2,5,S52.132A,,,,,,,,,,
+,,,,,,,,,,,NONE,,,FIRST_RESP,*NA,150,30,117,15,N,N,46,*NA,,*ND,,IP,,,,,,,,,ED,0HQ1XZZ,NEURO SURGERY,,4432,2,5,S01.81XA,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,GRND_AMB,*ND,30,*ND,15,N,N,*ND,INJ_SCENE,,*NA,,OPTHO,,,,,,,,,OR,009630Z,NEURO SURGERY,,3198,1,6,S02.19XA,,,,,,,,,,
+,,,,,,,,,,,,,,OTHER,GRND_AMB,128,*ND,103,*ND,*ND,*ND,80,INJ_SCENE,,*NA,,CHILDLIFE,,,,,,,,,ICU,4A10X4Z,NEURO SURGERY,,269,3,1,S06.6X0A,,,,,,,,,,
+,,,,,,,,,,,,,,OTHER,GRND_AMB,*ND,14,*ND,15,N,N,*ND,REFER_FAC,,*NA,,ORTHO,,,,,,,,,SPU,B030ZZZ,NEURO SURGERY,,23619,2,1,S06.5X0A,,,,,,,,,,
+,,,,,,,,,,,,,,OTHER,FIXED_WING_AMB,112,*ND,112,*ND,*ND,*ND,142,EMS_REND,,*NA,,SOCIAL,,,,,,,,,SPU,BR30ZZZ,ORTHOPEDICS,,23619,3,1,S06.1X0A,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,GRND_AMB,92,21,120,15,N,N,*NA,EMS_REND,,*NA,,PT/OT,,,,,,,,,ICU,5A1955Z,*BL,,23619,3,1,S06.320A,,,,,,,,,,
+,,,,,,,,,,,,,,FIRST_RESP,*NA,*ND,18,*ND,15,N,N,*ND,*NA,,*ND,,ORTHO,,,,,,,,,ICU,06H033Z,*BL,,23619,3,1,S52.591A,,,,,,,,,,
+,,,,,,,,,,,,,,OTHER,GRND_AMB,88,*ND,145,*ND,*ND,*ND,71,INJ_SCENE,,*NA,,IP,,,,,,,,,ICU,02HV33Z,*NA,,269,2,5,S00.03XA,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,GRND_AMB,*ND,24,*ND,15,N,N,*ND,REFER_FAC,,4,,*BL,,,,,,,,,ICU,3E0336Z,CRITICAL CARE,,210,2,6,S00.83XA,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,GRND_AMB,100,*ND,100,*ND,*ND,*ND,*NA,INJ_SCENE,,*NA,,SOCIAL,,,,,,,,,OR,00C40ZZ,NEURO SURGERY,,23754,1,6,S40.011A,,,,,,,,,,
+,,,,,,,,,,,,,,FIRST_RESP,*NA,*ND,20,*ND,15,N,N,*ND,*NA,,*NA,,PT/OT,,,,,,,,,OR,00500ZZ,NEURO SURGERY,,22,1,6,S50.11XA,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,GRND_AMB,*NA,*ND,*NA,*ND,*ND,*ND,*NA,INJ_SCENE,,*NA,,CHILDLIFE,,,,,,,,,OR,00Q20ZZ,CRITICAL CARE,,22,1,6,S13.4XXA,,,,,,,,,,
+,,,,,,,,,,,,,,OTHER,POV_WALK-IN,74,*NA,102,*NA,*NA,*NA,56,INJ_SCENE,,*NA,,NUTRITION,,,,,,,,,OR,00U207Z,CRITICAL CARE,,222,1,1,S42.422A,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,GRND_AMB,*NA,22,*NA,15,N,N,*NA,REFER_FAC,,*NA,,ORTHO,,,,,,,,,OR,0NS00ZZ,RADIOLOGY,,145,2,5,S42.022A,,,,,,,,,,
+,,,,,,,,,,,,,,OTHER,POV_WALK-IN,80,*NA,108,*NA,*NA,*NA,*ND,INJ_SCENE,,*ND,,PAIN,,,,,,,,,OR,4A103BD,EMERGENCY,,18,2,5,S42.102A,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,GRND_AMB,140,18,*ND,15,N,N,*ND,REFER_FAC,,*NA,,PSYCH,,,,,,,,,OR,30230K1,*BL,,18,2,5,S50.812A,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,GRND_AMB,108,40,123,15,N,N,*NA,INJ_SCENE,,4,,PEDSURG,,,,,,,,,OR,30233R1,*BL,,34,1,6,S60.512A,,,,,,,,,,
+,,,,,,,,,,,,,,FIRST_RESP,*NA,103,16,124,15,N,N,42,*NA,,*NA,,KIDS/GENPEDS,,,,,,,,,ICU,00P6X0Z,ORTHOPEDICS,,34,1,6,S40.212A,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,GRND_AMB,*NA,16,*NA,15,N,N,*NA,INJ_SCENE,,*NA,,OPTHO,,,,,,,,,ED,BW28ZZZ,NEURO SURGERY,,35,1,6,S00.01XA,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,POV_WALK-IN,*NA,*NA,*NA,*NA,*NA,*NA,*NA,REFER_FAC,,*NA,,CHILDABUSE,,,,,,,,,ED,BR20ZZZ,ORTHOPEDICS,,*BL,2,1,S70.312A,,,,,,,,,,
+,,,,,,,,,,,,,,INTO_REPT_HOSP,POV_WALK-IN,,*NA,,*NA,*NA,*NA,,REFER_FAC,,*NA,,NEUROSURGERY,,,,,,,,,OR,30230N1,ORTHOPEDICS,,2090,3,5,S80.812A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,CRITICALCARE MD,,,,,,,,,OR,0BH17EZ,EMERGENCY,,5554,2,5,S02.0XXA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,NEUROLOGY,,,,,,,,,OR,0PSG34Z,*BL,,2090,1,6,S32.502A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,CHILDLIFE,,,,,,,,,ED,BW41ZZZ,*NA,,1055,1,6,S32.402A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,SPEECH,,,,,,,,,ED,B24CZZZ,*BL,,3839,1,6,S10.81XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,SOCIAL,,,,,,,,,ED,BW28ZZZ,*NA,,405,3,1,S00.81XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,NUTRITION,,,,,,,,,ED,BR20ZZZ,EMERGENCY,,2582,2,1,S80.811A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,PT,,,,,,,,,ED,BW28ZZZ,*BL,,15248,3,1,S80.11XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,PT/OT,,,,,,,,,REF,BW251ZZ,HAND SURGERY,,60,1,2,S70.11XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,,,,,,,,REF,BR20ZZZ,HAND SURGERY,,240,1,2,S70.12XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,NEUROSURGERY,,,,,,,,,REF,BW28ZZZ,HAND SURGERY,,240,1,6,S06.5X9A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,NEUROLOGY,,,,,,,,,*NA,*NA,HAND SURGERY,,780,3,1,S06.6X9A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,CRITICALCARE MD,,,,,,,,,ICU,0BH17EZ,HAND SURGERY,,2241,3,1,S06.1X9A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,,,,,,,,OR,009630Z,,,31259,9,1,S05.8X1A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,PEDSURG,,,,,,,,,ICU,5A1955Z,,,147,2,3,S05.8X2A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,NEUROSURGERY,,,,,,,,,ICU,4A10X4Z,,,159,2,4,S01.512A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,ORTHO,,,,,,,,,OR,4A107BD,,,132,2,4,S00.03XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,IP,,,,,,,,,ICU,04HL33Z,,,1383,3,4,S02.0XXA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,NUTRITION,,,,,,,,,ICU,3E0336Z,,,59,1,6,S06.5X9A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,CHILDLIFE,,,,,,,,,ICU,3E0G76Z,,,59,1,6,S09.90XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,PT,,,,,,,,,ICU,30233N1,,,1243,1,6,S27.0XXA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,PT/OT,,,,,,,,,ICU,05HM33Z,,,1243,9,1,S32.010A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,SOCIAL,,,,,,,,,RAD,B030ZZZ,,,1243,2,5,S32.052A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,KIDS/GENPEDS,,,,,,,,,SPU,02HV33Z,,,736,1,6,S34.21XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,ORTHO,,,,,,,,,ED,BD42ZZZ,,,701,2,3,S30.0XXA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,CHILDLIFE,,,,,,,,,ED,BW211ZZ,,,43,1,6,S80.02XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,PEDSURG,,,,,,,,,ED,BW211ZZ,,,27,1,4,S80.11XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,SOCIAL,,,,,,,,,RAD,BW0LZZZ,,,27,1,6,S80.811A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,NUTRITION,,,,,,,,,ICU,B34HZZZ,,,*BL,1,6,S80.212A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,,,,,,,,RAD,BD11YZZ,,,*BL,9,5,S01.01XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,,,,,,,,ED,0CQ7XZZ,,,*BL,1,5,S09.90XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,PEDSURG,,,,,,,,,ED,BW28ZZZ,,,*BL,1,1,S42.412A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,CHILDLIFE,,,,,,,,,ED,4A10X4Z,,,29,1,6,S20.311A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,SOCIAL,,,,,,,,,RAD,B030ZZZ,,,980,9,1,S27.898A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,,,,,,,,ED,BW28ZZZ,,,980,1,6,S30.811A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,*NA,,,,,,,,,ED,BR20ZZZ,,,980,3,4,S37.818A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,KIDS/GENPEDS,,,,,,,,,OR,0SG3071,,,31,1,5,S81.812A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,HAND,,,,,,,,,OR,0SG0071,,,611,2,1,S89.81XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,HAND,,,,,,,,,OR,01NB0ZZ,,,611,1,6,S90.32XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,KIDS/GENPEDS,,,,,,,,,REF,BR20ZZZ,,,,1,5,S99.922A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,REF,BR27ZZZ,,,,1,5,S00.83XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,REF,BR29ZZZ,,,,1,5,S06.0X0A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,RAD,BR39ZZZ,,,,,,S00.83XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,OR,0PSG34Z,,,,,,S09.90XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,REF,BW28ZZZ,,,,,,S36.031A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,REF,BP2WYZZ,,,,,,S53.032A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ED,0HQ0XZZ,,,,,,S06.0X1A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ED,BW211ZZ,,,,,,S70.212A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ED,B24CZZZ,,,,,,S68.625A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ED,BW41ZZZ,,,,,,S61.241A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*NA,*NA,,,,,,S66.191A,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,REF,BW28ZZZ,,,,,,S69.80XA,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,REF,BW211ZZ,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,*NA,*NA,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ED,0RSMXZZ,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ED,BW281ZZ,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,OR,0HQQXZZ,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,OR,0HXGXZZ,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,OR,0HBGXZZ,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,ED,3E03329,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,OR,0KBD0ZZ,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,OR,0LN80ZZ,,,,,,,,,,,,,,,,
