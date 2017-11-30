@@ -84,10 +84,10 @@ for i in range(0,len(trauma_level)):
 
 
 print "====="
-print count_level1_blunt
-print count_level2_blunt
-print count_level3_blunt
-print count_levelN_blunt
+print "count no of level1 and blunt trauma type",count_level1_blunt
+print "count no of level2 and blunt trauma type", count_level2_blunt
+print "count no of level3 and blunt trauma type", count_level3_blunt
+print "count no of levelN and blunt trauma type",count_levelN_blunt
 
 
 
@@ -131,10 +131,10 @@ for i in range(0,len(fall_height)):
 
 
 
-print fallheight_level1
-print fallheight_level2
-print fallheight_level3
-print fallheight_levelN
+print "fall height <6 falling into level1",fallheight_level1
+print "fall height <6 level 2 ",fallheight_level2
+print "fall height <6 level 3",fallheight_level3
+print "fall height <6 level N",fallheight_levelN
 
 
 #for fall height > 6 and < 15
@@ -167,10 +167,10 @@ for i in range(0,len(fall_height)):
     if int(fall_height[i]) > 6 and int(fall_height[i]) <= 15 and int(trauma_level[i]) == 4:
         fallheight15_levelN += 1
 
-print fallheight15_level1
-print fallheight15_level2
-print fallheight15_level3
-print fallheight15_levelN
+print "fall height <6 and >15 falling into level1",fallheight15_level1
+print "fall height <6 and >15 falling into level2",fallheight15_level2
+print "fall height <6 and >15 falling into level3",fallheight15_level3
+print "fall height <6 and >15 falling into levelN",fallheight15_levelN
 
 
 #for fall height > 15
@@ -203,10 +203,50 @@ for i in range(0,len(fall_height)):
         fallheight_greaterThan15_levelN += 1
 
 
-print fallheight_greaterThan15_level1
-print fallheight_greaterThan15_level2
-print fallheight_greaterThan15_level3
-print fallheight_greaterThan15_levelN
+print "fall height >15 falling into level1",fallheight_greaterThan15_level1
+print "fall height >15 falling into level2", fallheight_greaterThan15_level2
+print "fall height >15 falling into level3",fallheight_greaterThan15_level3
+print "fall height >15 falling into levelN",fallheight_greaterThan15_levelN
+
+
+#graph plotting
+variable  = 4
+fallheight6 = (fallheight_level1, fallheight_level2, fallheight_level3, fallheight_levelN)
+fallheight15 = (fallheight15_level1,fallheight15_level2, fallheight15_level3, fallheight15_levelN)
+fallheight_gt15 = (fallheight_greaterThan15_level1,fallheight_greaterThan15_level2, fallheight_greaterThan15_level3, fallheight_greaterThan15_levelN )
+
+
+fig, ax = plt.subplots()
+index = np.arange(variable)
+bar_width = 0.45
+opacity = 0.8
+
+rects1 = plt.bar(index, fallheight6, bar_width,
+                 alpha=opacity,
+                 color='b',
+                 label='fall-height-6')
+
+rects2 = plt.bar(index + bar_width, fallheight15, bar_width,
+                 alpha=opacity,
+                 color='g',
+                 label='fall-height -6 to 15')
+
+rects3 = plt.bar(index + bar_width + bar_width + bar_width + bar_width, fallheight_gt15, bar_width,
+                 alpha=opacity,
+                 color='r',
+                 label='fall-height greater than 15')
+
+
+
+plt.xlabel('Fall Height')
+plt.ylabel('Number of People')
+plt.title('Fall Data')
+plt.xticks(index + bar_width + bar_width, ('Level1', 'Level2', 'Level3', 'LevelN'))
+plt.legend()
+plt.show()
+
+
+
 
 
 
@@ -367,6 +407,12 @@ for i in range(0,len(fall_height)):
 print count_height6_dead
 print count_height6to15_dead
 print count_height_gt_than_15_dead
+
+
+
+
+
+
 
 
 
