@@ -64,6 +64,10 @@ for i in range(0, len(airbag_deploy)):
     elif fall_height[i] == "*BL":
         bl_count_airbagdeploy = bl_count_airbagdeploy + 1
 print (na_count_airbagdeploy)
+total = na_count_airbagdeploy + nd_count_airbagdeploy + bl_count_airbagdeploy
+print ('--------------------------')
+airbag_deploy_nullvalues_percent = (total/float(len(airbag_deploy)))*100
+print (airbag_deploy_nullvalues_percent)
 
 patient_pos = df['patient_pos']
 print (patient_pos)
@@ -80,6 +84,10 @@ for i in range(0, len(patient_pos)):
     elif patient_pos[i] == "*BL":
         bl_count_patientpos = bl_count_patientpos + 1
 print (na_count_patientpos)
+total = na_count_patientpos + nd_count_patientpos + bl_count_patientpos
+print ('--------------------------')
+patient_pos_nullvalues_percent = (total/float(len(patient_pos)))*100
+print (patient_pos_nullvalues_percent)
 
 safety_equip_issues = df['safety_equip_issues']
 print (safety_equip_issues)
@@ -96,6 +104,10 @@ for i in range(0, len(safety_equip_issues)):
     elif safety_equip_issues[i] == "*BL":
         bl_count_safety_equip_issues = bl_count_safety_equip_issues + 1
 print (na_count_safety_equip_issues)
+total = na_count_safety_equip_issues + nd_count_safety_equip_issues + bl_count_safety_equip_issues
+print ('--------------------------')
+safety_equip_issues_nullvalues_percent = (total/float(len(safety_equip_issues)))*100
+print (safety_equip_issues_nullvalues_percent)
 
 child_restraint = df['child_restraint']
 print (child_restraint)
@@ -112,6 +124,10 @@ for i in range(0, len(child_restraint)):
     elif child_restraint[i] == "*BL":
         bl_count_child_restraint = bl_count_child_restraint + 1
 print (na_count_child_restraint)
+total = na_count_child_restraint + nd_count_child_restraint + bl_count_child_restraint
+print ('--------------------------')
+child_restraint_nullvalues_percent = (total/float(len(child_restraint)))*100
+print (child_restraint_nullvalues_percent)
 
 mv_speed = df['mv_speed']
 print (mv_speed)
@@ -128,6 +144,10 @@ for i in range(0, len(mv_speed)):
     elif mv_speed[i] == "*BL":
         bl_count_mv_speed = bl_count_mv_speed + 1
 print (na_count_mv_speed)
+total = na_count_mv_speed + nd_count_mv_speed + bl_count_mv_speed
+print ('--------------------------')
+mv_speed_nullvalues_percent = (total/float(len(mv_speed)))*100
+print (mv_speed_nullvalues_percent)
 
 transport_mode = df['transport_mode']
 print (transport_mode)
@@ -144,6 +164,10 @@ for i in range(0, len(transport_mode)):
     elif transport_mode[i] == "*BL":
         bl_count_transport_mode = bl_count_transport_mode + 1
 print (bl_count_transport_mode)
+total = na_count_transport_mode + nd_count_transport_mode + bl_count_transport_mode
+print ('--------------------------')
+transport_mode_nullvalues_percent = (total/float(len(transport_mode)))*100
+print (transport_mode_nullvalues_percent)
 
 field_SBP1 = df['field_SBP']
 print (field_SBP1)
@@ -160,6 +184,10 @@ for i in range(0, len(field_SBP1)):
     elif field_SBP1[i] == "*BL":
         bl_count_field_SBP = bl_count_field_SBP + 1
 print (na_count_field_SBP)
+total = na_count_field_SBP + nd_count_field_SBP + bl_count_field_SBP
+print ('--------------------------')
+field_SBP1_nullvalues_percent = (total/float(len(field_SBP1)))*100
+print (field_SBP1_nullvalues_percent)
 
 total_vent_days = df['total_vent_days']
 print (total_vent_days)
@@ -176,6 +204,10 @@ for i in range(0, len(total_vent_days)):
     elif total_vent_days[i] == "*BL":
         bl_count_total_vent_days = bl_count_total_vent_days + 1
 print (na_count_total_vent_days)
+total = na_count_total_vent_days + nd_count_total_vent_days + bl_count_total_vent_days
+print ('--------------------------')
+total_vent_days_nullvalues_percent = (total/float(len(total_vent_days)))*100
+print (total_vent_days_nullvalues_percent)
 
 field_HR = df['field_HR']
 print (field_HR)
@@ -192,6 +224,10 @@ for i in range(0, len(field_HR)):
     elif field_HR[i] == "*BL":
         bl_count_field_HR = bl_count_field_HR + 1
 print (na_count_field_HR)
+total = na_count_field_HR + nd_count_field_HR + bl_count_field_HR
+print ('--------------------------')
+field_HR_nullvalues_percent = (total/float(len(field_HR)))*100
+print (field_HR_nullvalues_percent)
 
 field_shock_ind = df['field_shock_ind']
 print (field_shock_ind)
@@ -208,6 +244,10 @@ for i in range(0, len(field_shock_ind)):
     elif field_shock_ind[i] == "*BL":
         bl_count_field_shock_ind = bl_count_field_shock_ind + 1
 print (na_count_field_shock_ind)
+total = na_count_field_shock_ind + nd_count_field_shock_ind + bl_count_field_shock_ind
+print ('--------------------------')
+field_shock_ind_nullvalues_percent = (total/float(len(field_shock_ind)))*100
+print (field_shock_ind_nullvalues_percent)
 
 ED_GCS = df['ED_GCS']
 print (ED_GCS)
@@ -224,6 +264,10 @@ for i in range(0, len(ED_GCS)):
     elif ED_GCS[i] == "*BL":
         bl_count_ED_GCS = bl_count_ED_GCS + 1
 print (na_count_ED_GCS)
+total = na_count_ED_GCS + nd_count_ED_GCS + bl_count_ED_GCS
+print ('--------------------------')
+ED_GCS_nullvalues_percent = (total/float(len(ED_GCS)))*100
+print (ED_GCS_nullvalues_percent)
 
 brain_injury = df['brain_injury']
 print (brain_injury)
@@ -240,3 +284,7 @@ for i in range(0, len(brain_injury)):
     elif brain_injury[i] == "*BL":
         bl_count_brain_injury = bl_count_brain_injury + 1
 print (na_count_brain_injury)
+total = na_count_brain_injury + nd_count_brain_injury + bl_count_brain_injury
+print ('--------------------------')
+brain_injury_nullvalues_percent = (total/float(len(brain_injury)))*100
+print (brain_injury_nullvalues_percent)
