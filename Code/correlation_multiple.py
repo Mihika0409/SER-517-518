@@ -1,10 +1,11 @@
-import pandas as pd
-import numpy as np
-import seaborn as sb
 import matplotlib.pyplot as plt
-from xlrd import open_workbook
 import unicodecsv
-import csv
+
+import numpy as np
+import pandas as pd
+import seaborn as sb
+from xlrd import open_workbook
+
 
 # Converts the xls file to csv
 def xls2csv (xls_filename, csv_filename):

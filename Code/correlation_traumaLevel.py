@@ -1,6 +1,7 @@
-import pandas as pd
-import numpy as np
 import csv
+
+import numpy as np
+import pandas as pd
 
 #To find the pearson corelation between The motor vehicle speed and the trauma level.
 df = pd.read_csv('/Users/satishnandan/Desktop/TraumaActivation/mv2.csv')
