@@ -10,9 +10,9 @@ import matplotlib.pyplot as plt
 
 # In[10]:
 
-df = pd.read_csv("Copy of Stacked Trauma data.csv")
-df2 = pd.read_csv("Original_download_TA_2017_refactored.csv")
-df3 = pd.read_csv("refined2.csv")
+df = pd.read_csv("../Data/Copy of Stacked Trauma data.csv")
+df2 = pd.read_csv("../Data/Original_download_TA_2017_refactored.csv")
+df3 = pd.read_csv("../Data/refined2.csv")
 copy_stack = list(df)
 original_stack = list(df2)
 print(copy_stack)
