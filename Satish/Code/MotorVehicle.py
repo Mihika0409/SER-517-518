@@ -8,13 +8,13 @@ import unicodecsv
 import csv
 
 #To find the pearson corelation between The motor vehicle speed and the trauma level.
-df = pd.read_csv('/Users/satishnandan/Desktop/TraumaActivation/mv2.csv')
+df = pd.read_csv('mv2.csv')
 cols = ['MV Speed','Levels']
 cor_matrix = np.corrcoef(df[cols].values.T)
 print cor_matrix
 
 #will remove not available, no data and blank entries from airbag column.
-with open('/Users/satishnandan/Desktop/TraumaActivation/test.csv', 'rb') as inp, open('/Users/satishnandan/Desktop/TraumaActivation/airbag.csv', 'wb') as out:
+with open('test.csv', 'rb') as inp, open('airbag.csv', 'wb') as out:
     writer = csv.writer(out)
     for row in csv.reader(inp):
         if row[15].strip() == "*NA" or row[15].strip() == "*ND" or row[15].strip() == "*BL":
@@ -26,7 +26,7 @@ with open('/Users/satishnandan/Desktop/TraumaActivation/test.csv', 'rb') as inp,
 #will analyse the total count of patients given level 1 and level 2 treatment when airbag is deployed in motor vehicle accident.
 count = 0
 count1 = 0
-with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+with open('new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[9].strip() == "*NA" or row[9].strip() == "*ND" or row[9].strip() == "*BL":
             continue
@@ -51,7 +51,7 @@ def xls2csv(xls_filename, csv_filename):
     return csv_filename
 
 
-csv_file = xls2csv('/Users/satishnandan/Desktop/TraumaActivation/Copy of Stacked Trauma data.xlsx', '/Users/satishnandan/Desktop/TraumaActivation/newData.csv')
+csv_file = xls2csv('Copy of Stacked Trauma data.xlsx', 'newData.csv')
 
 #Will plot the graph between trauma levels and Motor vehicle speed.
 headers = ['Levels','MV Speed']
@@ -64,7 +64,7 @@ plt.plot(y,x,".")
 plt.ylim(50,200)
 plt.xlim(0,3)
 plt.show(block=True)
-dataset = pd.read_csv('/Users/satishnandan/Desktop/TraumaActivation/newData.csv', header=None)
+dataset = pd.read_csv('newData.csv', header=None)
 temp = range(0,42)
 # mark zero values as missing or NaN
 dataset[temp] = dataset[temp].replace("*BL", numpy.NaN)
@@ -75,7 +75,7 @@ print(dataset.shape)
 
 #Will check the relation between motor vehicle speed and fall height.
 count1 = 0
-with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+with open('new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
             continue
@@ -86,7 +86,7 @@ with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
 
                 count1 = count1 + 1
 #Will count the total number of patients that are alive or dead after the treatment in motor vehicle accident.
-with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+with open('new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
             continue
@@ -105,7 +105,7 @@ def is_number(s):
         return False
 
 #will count the total number of patients whose field shock is less than 0.75 and who who were given level 1 treatment.
-with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+with open('new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
             continue
@@ -122,7 +122,7 @@ penetrating = 0
 blunt = 0
 other = 0
 #Will count the trauma type in motor vehicle accidents.
-with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+with open('new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
             continue
@@ -147,7 +147,7 @@ dead = 0
 alive = 0
 
 #Trauma level analysis on patients who are positioned in the front seat passenger in a motor vehicle accident.
-with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+with open('new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
             continue
@@ -175,7 +175,7 @@ dead = 0
 alive = 0
 
 #Trauma level analysis on patients who are in driver position in a motor vehicle accident.
-with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+with open('new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
             continue
@@ -203,7 +203,7 @@ dead = 0
 alive = 0
 count3 = 0
 #Trauma level analysis on patients who are in Back Seat in a motor vehicle accident.
-with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+with open('new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
             continue
@@ -236,7 +236,7 @@ dead = 0
 alive = 0
 
 #Trauma level analysis on patients who are bicyclist in a motor vehicle accident.
-with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+with open('new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
             continue
@@ -264,7 +264,7 @@ dead = 0
 alive = 0
 
 #Trauma level analysis on patients who position is not specified in a motor vehicle accident.
-with open('/Users/satishnandan/Desktop/TraumaActivation/new.csv', 'rU') as inp:
+with open('new.csv', 'rU') as inp:
     for row in csv.reader(inp):
         if row[13].strip() == "*NA" or row[13].strip() == "*ND" or row[13].strip() == "*BL" or row[13].strip() == "":
             continue
