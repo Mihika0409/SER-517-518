@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('assault1.csv', header = None, error_bad_lines=False)
+df = pd.read_csv('CSV/assault1.csv', header=None, error_bad_lines=False)
 df.columns = ['tid', 'hosp_date', 'age', 'gender', 'levels' , 'icd_code', 'trauma_type' , 'physical_abuse', 'injury_comments', 'airbag_deploy',
               'patient_pos' , 'safety_equip_issues' , 'child_restraint' , 'mv_speed' , 'fall_height', 'transport_type' , 'transport_mode',
               'field_SBP' , 'field_HR' , 'field_shock_ind' , 'field_RR' , 'resp_assis ' , 'RTS' ,'field_GCS' , 'arrived_from' , 'ED_LOS' ,
