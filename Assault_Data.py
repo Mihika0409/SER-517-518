@@ -61,7 +61,7 @@ print "the level N count for penetration is: "
 print pen_count_levelN
 
 print "--------------------------------------------------------------"
-# # Finding out the patterns for traumaType = Blunt
+# Finding out the patterns for traumaType = Blunt
 
 blunt_count = 0
 blunt_count_level1 = 0
@@ -104,6 +104,43 @@ print blunt_count_level3
 print "the level N count of blunt is: "
 print blunt_count_levelN
 
+# Finding out patterns for the GCS scale
+
+GCS = df['field_GCS']
+
+gcs_0_2 = 0;
+gcs_3_8 = 0;
+gcs_9_12 = 0;
+gcs_13_15 = 0;
+
+for i in range(0, len(GCS)):
+    if int(GCS[i]) >= 0 and int(GCS[i]) <= 2:
+        gcs_0_2 = gcs_0_2 + 1
+
+for i in range(0, len(GCS)):
+    if int(GCS[i]) >= 3 and int(GCS[i]) <= 8:
+        gcs_3_8 = gcs_3_8 + 1
+
+for i in range(0, len(GCS)):
+    if int(GCS[i]) >= 9 and int(GCS[i]) <= 12:
+        gcs_9_12 = gcs_9_12 + 1
+
+for i in range(0, len(GCS)):
+    if int(GCS[i]) >= 13 and int(GCS[i]) <= 15:
+        gcs_13_15 = gcs_13_15 + 1
+
+print "The number of people suffereing from GCS values from 0-2 are:"
+print gcs_0_2
+
+print "The number of people suffereing from GCS values from 3-8 are:"
+print gcs_3_8
+
+print "The number of people suffereing from GCS values from 9-12 are:"
+print gcs_9_12
+
+print "The number of people suffereing from GCS values from 13-15 are:"
+print gcs_13_15
+
 # Visualizing the assault data
 
 import matplotlib.pyplot as plt
@@ -115,6 +152,16 @@ counts = [pen_count, blunt_count]
 plt.bar(y_pos, counts, align='center', alpha=0.5, width=0.35)
 plt.xticks(y_pos, objects)
 plt.ylabel('Trauma')
+plt.show()
+
+# Visualizing the GCS data
+
+objects1 = ("Level: 0-2", "Level: 3-8", "Level: 9-12", "Level: 13-15")
+y_pos = np.arange(len(objects1))
+counts1 = [gcs_0_2, gcs_3_8, gcs_9_12, gcs_13_15]
+plt.bar(y_pos, counts1, align='center', alpha=0.5, width=0.35)
+plt.xticks(y_pos, objects1)
+plt.ylabel('Count')
 plt.show()
 
 # Plots to show blunt and penetration data side by side
