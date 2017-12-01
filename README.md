@@ -1,18 +1,21 @@
 # SER-517
+Codes for analyzing the dataset
 
-This repository contains all the files and code related to the SER 517 Capstone Project (Trauma Activation Algorithm). 
+# Setup
+Python 2.7
 
-The database branch contains code for importing the datasets provided by the sponsor, creating a database for that dataset, creating tables and dividing the dataset into subcategories for use in the analysis phase. 
+## Packages (install with pip)
+pandas
+ntlk
+numpy
+seaborn
 
-The correlation branch contains all the files required for computing the correlation between the features in the dataset.
+## Download ntlk packages
+	In the python terminal, run the following commands to download ntlk.corpus:
+	import nltk
+	nltk.download() or nltk.download_shell() if the console hangs on 'showing info'
 
-The parsing branch contains code to create a csv of the dataset provided.
+	from the download ui, type d to download. When prompted for a package identifier, type the package: all-corpora
 
-The analysis branch contains all the files and code used for the analysis phase of the project. The analysis phase is where we have analyzed the different features in the dataset to see how important a role they play in trauma classification.
+	http://blog.nlpapi.co/how-to-install-nltk-corporastopwords/
 
-In order to run this code, the user will need to have python 2 installed on their machines. Python can be installed here:
-https://www.python.org/downloads/
-
-Various libraries have been used in python to run the codes. These libraries can be installed using the command line on Windows or the terminal on linux/mac with the command: pip install <library_name>. For example: pip install numpy
-
-The code can be run on any machine as long as it has python 2 installed and the capability to successfully install and support all the libraries that have been used. 
