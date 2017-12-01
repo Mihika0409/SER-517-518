@@ -1,21 +1,10 @@
 # SER-517
-Codes for analyzing the dataset
 
-# Setup
-Python 2.7
+This repository contains all the files and codes required for SER 517 Capstone (Trauma Activation Algorithm)
 
-## Packages (install with pip)
-pandas
-ntlk
-numpy
-seaborn
+To run this project, you need to have python 2 installed. 
+You can download python from https://www.python.org/downloads/
 
-## Download ntlk packages
-	In the python terminal, run the following commands to download ntlk.corpus:
-	import nltk
-	nltk.download() or nltk.download_shell() if the console hangs on 'showing info'
-
-	from the download ui, type d to download. When prompted for a package identifier, type the package: all-corpora
-
-	http://blog.nlpapi.co/how-to-install-nltk-corporastopwords/
+Various python libraries are needed to run execute this code. The libraries can be installed with the following command:
+pip install <library_name> . For example. pip install numpy
 
