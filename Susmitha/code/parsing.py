@@ -8,7 +8,6 @@ import csv
 
 # Converts the xls file to csv
 '''def xls2csv (xls_filename, csv_filename):
-
     wb = open_workbook(xls_filename)
     sh = wb.sheet_by_index(0)
     fh = open(csv_filename,"wb")
@@ -19,18 +18,18 @@ import csv
     return csv_filename
 csv_file = xls2csv('Copy of Trauma Data Sample From Jan 2016 to Jan 2017.xlsx','csv.csv')'''
 
-df = pd.read_csv('/Users/vc/Downloads/refined7 (1).csv')
+df = pd.read_csv('/Users/vc/Downloads/correlation dataset.csv')
 df['Airbag Deployment'] = df['Airbag Deployment'].replace('*BL',0)
 df['Airbag Deployment'] = df['Airbag Deployment'].replace('*NA',0)
 df['Airbag Deployment'] = df['Airbag Deployment'].replace('*ND',0)
 for index, row in df.iterrows():
     data = df['Airbag Deployment']
-    print data
+    #print data
+
 # creates a new dataframe with just comments
 '''dfn = pd.read_csv('csv.csv')
 df1 = dfn.ix[:, 19:20].dropna(axis=0, how='any')
 df1 = df1.rename(columns={'Unnamed: 19': 'Comments'})
-
 for index, row in df1.iterrows():
     dataC = df1['Comments']
     print dataC'''
@@ -38,8 +37,10 @@ df['Gender'] = (df['Gender'] !='M').astype(int)
 df
 for index, row in df.iterrows():
     data = df['Gender']
-#    print data
-cols = ['Gender','Transport Mode','GCS','Levels']
+    #print data
+
+#finding correlation between target variable(Levels) and other columns in the dataset
+cols = ['Gender','Transport Mode','GCS','Levels','Pulse']
 cor_matrix = np.corrcoef(df[cols].values.T)
 sb.set(font_scale=1.5)
 cor_heat_map = sb.heatmap(cor_matrix, cbar=True, annot=True,square=True,fmt='.2f', annot_kws={'size':15},yticklabels=cols,xticklabels=cols)
