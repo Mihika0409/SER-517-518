@@ -4,7 +4,7 @@ import pandas as pd
 import seaborn as sb
 
 # Case 1 - Airbag Deployment with trauma level
-dataset = pd.read_csv('data.csv')
+dataset = pd.read_csv('Data/data.csv')
 dataset = dataset[['T1#','Airbag Deployment', 'Levels']]
 dataset = pd.DataFrame.drop_duplicates(dataset)
 del dataset['T1#']
