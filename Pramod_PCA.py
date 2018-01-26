@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.decomposition import PCA
 
 
-df = pd.read_csv('/Users/Pramod/Desktop/SER517/Correlation/Trauma2_removeND_NA_BL.csv', header = None, error_bad_lines=False)
+df = pd.read_csv('Pramod_PCA_data.csv', header = None, error_bad_lines=False)
 df.columns = ['T1',    'ED/Hosp Arrival Date',    'Age in Years',    'Gender',  'Levels',  'ICD-10 E-code',   'Trauma Type', 'Report of physical abuse',    'Injury Comments', 'Airbag Deployment',   'Patient Position in Vehicle',
               'Safet Equipment Issues',    'Child Restraint', 'MV Speed',    'Fall Height', 'Transport Type',  'Transport Mode',  'Field SBP',   'Field HR',    'Field Shock Index',   'Field RR',    'Resp Assistance',
               'RTS',   'Field GCS',   'Arrived From',    'ED LOS (mins)',   'Dispositon from  ED', 'ED SBP',  'ED HR',   'ED RR',
