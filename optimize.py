@@ -35,10 +35,13 @@ def logistic(X,Y):
     scoring = 'accuracy'
     results = model_selection.cross_val_score(modelCV, X_train, y_train, cv=kfold, scoring=scoring)
     print("10-fold cross validation average accuracy: %.3f" % (results.mean()))
+    print "Model Validation values:"
     print(classification_report(y_test, y_pred))
     Confusion_matrix = confusion_matrix(y_test, y_pred)
+    print "Confusion Matrix:"
     print(Confusion_matrix)
     fpr, tpr, thresholds = metrics.roc_curve(y_test, y_pred)
+    print "Area Under ROC curve:"
     print metrics.auc(fpr,tpr)
     plt.plot(fpr, tpr, label='Logistic Regression (area = %0.2f)' % metrics.auc(fpr,tpr))
     plt.plot([0, 1], [0, 1], 'r--')
@@ -50,6 +53,7 @@ def logistic(X,Y):
     plt.legend(loc="lower right")
     plt.savefig('Log_ROC')
     plt.show()
+
 
 #Function to train the Decision Trees Classifier and compute the accuracy on the test set and also cross vaildate using k fold.
 def decisionClassifier(X,Y):
@@ -65,6 +69,7 @@ def decisionClassifier(X,Y):
     scoring = 'accuracy'
     results = model_selection.cross_val_score(modelCV, X_train, y_train, cv=kfold, scoring=scoring)
     print("10-fold cross validation average accuracy: %.3f" % (results.mean()))
+
 
 print "Efficiency and ROC Graph on Logistic Regression Model:"
 logistic(df,Y)
