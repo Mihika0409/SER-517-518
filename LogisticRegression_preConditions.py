@@ -130,6 +130,9 @@ print y_pred_bagging_list
 print "The actual values are: "
 print Y_test_manual
 
+print "The precision, recall and f-score of bagging are:"
+print (precision_recall_fscore_support(Y_test_manual, y_pred_bagging_list, average='macro'))
+
 #**********************************************************
 
 adb = AdaBoostClassifier(LogisticRegression(), n_estimators = 5, learning_rate = 0.5)
@@ -152,3 +155,4 @@ vc.fit(X_train, Y_train)
 
 print "The voting classifier score is: "
 print vc.score(X_test, Y_test)
+
