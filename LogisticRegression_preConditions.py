@@ -5,6 +5,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
 
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support
@@ -103,7 +105,7 @@ print (precision_recall_fscore_support(Y_test_manual, y_pred_manual, average='ma
 
 #**********************************************************
 
-from sklearn.ensemble import BaggingClassifier, AdaBoostClassifier
+from sklearn.ensemble import BaggingClassifier, AdaBoostClassifier, VotingClassifier
 
 #**********************************************************
 
@@ -119,14 +121,14 @@ print bg.score(X_test, Y_test)
 y_pred_bagging = bg.predict(X_test)
 y_pred_bagging_list = y_pred_bagging.tolist()
 
-# print "The predicted values without bagging are :"
-# print y_pred_manual
-#
-# print "The predicted values of bagging are :"
-# print y_pred_bagging_list
-#
-# print "The actual values are: "
-# print Y_test_manual
+print "The predicted values without bagging are :"
+print y_pred_manual
+
+print "The predicted values of bagging are :"
+print y_pred_bagging_list
+
+print "The actual values are: "
+print Y_test_manual
 
 #**********************************************************
 
@@ -138,3 +140,15 @@ print adb.score(X_train, Y_train)
 
 print "The boosting score for test data is: "
 print adb.score(X_test, Y_test)
+
+#**********************************************************
+
+lr = LogisticRegression()
+dt = DecisionTreeClassifier()
+svm = SVC(kernel = 'poly', degree = 2 )
+
+vc = VotingClassifier( estimators= [('lr',lr),('dt',dt),('svm',svm)], voting = 'hard')
+vc.fit(X_train, Y_train)
+
+print "The voting classifier score is: "
+print vc.score(X_test, Y_test)
