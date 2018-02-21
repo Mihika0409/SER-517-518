@@ -50,15 +50,19 @@ df = pd.concat([df, dummy_row7], axis=1)
 df.drop(['Gender','Arrived From','Transport Mode','Report of Physical Abuse?','Child Restraint','Final Outcome-Dead or Alive'])
 
 
-X = df.values[:, 1:len(df)]
-Y = df.values[:, 0:1]
-Y = Y.astype('int')
+#Dropping the alpha numeric rows.
+df.drop(['Gender','Arrived From','Transport Mode','Report of Physical Abuse?','Child Restraint','Final Outcome-Dead or Alive'])
 
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=50)
 
-Classifier_Criterion = DecisionTreeClassifier(criterion="gini", random_state=50)
-Classifier_Criterion.fit(X_train, y_train)
+#Splitting the data into Training and Test
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.40, random_state=100)
 
-y_pred = Classifier_Criterion.predict(X_test)
+classification_pipeline = Pipeline([('scalar', StandardScaler()), ('classifier',DecisionTreeClassifier(random_state=100))])
 
-print "Accuracy is ", accuracy_score(y_test, y_pred) * 100
+classification_pipeline.fit(X_train,Y_train)
+
+accuracy_training = classification_pipeline.score(X_train, Y_train)
+print 'Accuracy', accuracy_training
+
+accuracy = classification_pipeline.score(X_test, Y_test)
+print 'Accuracy', accuracy
