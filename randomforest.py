@@ -32,6 +32,10 @@ df['Levels'] = df['Levels'].replace(['N'])
 
 # Taking only the rows with levels 1 and 2 trauma levels
 df = df.loc[df['Levels'].isin(['1', '2'])]
+#y = df.values()
+print(df.groupby('Levels').count())
+#import sys
+#sys.exit()
 print (df.head())
 
 #Split data into train and test datasets
@@ -44,7 +48,7 @@ def handle_missing_values(df,missing_values_header,missing_label):
 
 #Training the random forest classifier with the scikit learn
 def random_forest_classifier(features, target):
-    clf = RandomForestClassifier()
+    clf = RandomForestClassifier(n_estimators=100, max_depth=5)
     clf.fit(features, target)
     return clf
 
