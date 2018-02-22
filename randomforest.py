@@ -4,6 +4,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
+from collections import Counter
+from sklearn.datasets import make_classification
+from imblearn.over_sampling import SMOTE
 
 df = pd.read_csv('/Users/vc/Downloads/Trauma_dataset.csv')
 df.columns = ['T1',    'ED/Hosp Arrival Date',    'Age in Years',    'Gender',  'Levels',  'ICD-10 E-code',   'Trauma Type',
@@ -35,8 +38,21 @@ df = df.loc[df['Levels'].isin(['1', '2'])]
 #y = df.values()
 print(df.groupby('Levels').count())
 #import sys
-#sys.exit()
+#sys.exit(.index)
 print (df.head())
+l1= df.loc[df['Levels'].isin(['1'])]
+l2= df.loc[df['Levels'].isin(['2'])]
+print("The Level1 rows count :: ", l1.shape)
+print("The Level2 rows count :: ", l2.shape)
+
+X, Y = make_classification(n_classes=2, class_sep=2,
+                           weights=[0.2, 0.8], n_informative=3, n_redundant=1, flip_y=0,
+                           n_features=20, n_clusters_per_class=1, n_samples=1323, random_state=10)
+print('Original dataset shape {}'.format(Counter(Y)))
+sm = SMOTE(random_state=42)
+X_res, Y_res = sm.fit_sample(X, Y)
+print('Resampled dataset shape {}'.format(Counter(Y_res)))
+
 
 #Split data into train and test datasets
 def split_dataset(df, train_percentage, feature_headers, target_header):
@@ -48,7 +64,7 @@ def handle_missing_values(df,missing_values_header,missing_label):
 
 #Training the random forest classifier with the scikit learn
 def random_forest_classifier(features, target):
-    clf = RandomForestClassifier(n_estimators=100, max_depth=5)
+    clf = RandomForestClassifier()
     clf.fit(features, target)
     return clf
 
