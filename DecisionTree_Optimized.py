@@ -11,6 +11,14 @@ df = df[
      'Transport Mode', 'Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'Resp Assistance', 'RTS', 'Field GCS',
      'Arrived From']]
 
+columns = ['Levels', 'T1#', 'Age in Years', 'Gender', 'Trauma Type', 'Report of physical abuse?', 'MV Speed',
+           'Fall Height', 'Transport Mode', 'Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'Resp Assistance',
+           'RTS', 'Field GCS', 'Arrived From']
+for x in columns:
+    df = df[pd.notnull(df[x])]
+df = df.loc[df['Levels'].isin(['1', '2'])]
+df[['Levels']] = df[['Levels']].replace([2], [0])
+
 dummy = pd.get_dummies(df['Arrived From'])
 df = pd.concat([df, dummy], axis=1)
 del df['Arrived From']
@@ -50,7 +58,27 @@ y = Y.reshape(-1, )
 
 clf = DecisionTreeClassifier()
 n_iter_search = 20
-random_search = RandomizedSearchCV(clf, param_distributions=param_dist, n_iter=n_iter_search)
+random_search = RandomizedSearchCV(clf, param_distributions=param_dist, n_iter=n_iter_search, return_train_score=True,
+                                   refit=True, cv=10)
 random_search.fit(X, y)
+
+print "Random search predict: "
+print random_search.predict(X)
+
+print "Random search predict probabilities: "
+print random_search.predict_proba(X)
+
+print "Random search log probabilities: "
+print random_search.predict_log_proba(X)
+
+print "Random search score: "
+print random_search.score(X, y)
+
+print "Best parameters found with the randomized search: "
 print random_search.best_params_
+
+print "Accuracy of the model: "
 print random_search.best_score_
+
+print "Estimators used in this model: "
+print random_search.best_estimator_
