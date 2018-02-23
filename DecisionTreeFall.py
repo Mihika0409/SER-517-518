@@ -66,3 +66,11 @@ print('Test Accuracy: %.3f' % accuracy)
 
 accuracy_training = classification_pipeline.score(X_train, Y_train)
 print('Training Accuracy: %.3f' % accuracy_training)
+
+tn, fp, fn, tp = confusion_matrix(Y_test, classification_pipeline.predict(X_test)).ravel()
+print "The metrics True Negatives, False Positive, False Negatives, True Positive in the order are: "
+print (tn, fp, fn, tp)
+print ""
+
+print "The precision, recall and f-score are:"
+print (precision_recall_fscore_support(Y_test, classification_pipeline.predict(X_test), average='macro'))
