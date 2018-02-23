@@ -15,13 +15,15 @@ df.columns = ['T1',    'ED/Hosp Arrival Date',    'Age in Years',    'Gender',  
 
 #print df.head()
 
-df = df[[ 'Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS','Levels']]
+df = df[[ 'Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS','Injury Severity Score','ED SBP','ED HR','ED RR','ED GCS','Levels']]
 #print df.head()
 #Dropping all the rows with null values
-features = [ 'Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS','Levels']
+features = [ 'Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS','Injury Severity Score','ED SBP','ED HR','ED RR','ED GCS','Levels']
 for x in features:
     df = df[pd.notnull(df[x])]
+    df = df[pd.notnull(df[x])].replace(['*NA', '*ND', '*BL'],value = ['0', '0', '0'])
 df = df.loc[df['Levels'].isin(['1', '2'])]
+
 
 le = LabelEncoder()
 df['Gender'] = le.fit_transform(df['Gender'].values)
