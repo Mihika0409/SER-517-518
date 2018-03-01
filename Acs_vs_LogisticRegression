@@ -1,0 +1,65 @@
+import pandas as pd
+import math
+import xlsxwriter
+
+
+df = pd.read_csv('/Users/Pramod/Desktop/SER517/Trauma2.csv', header = None, error_bad_lines=False)
+df.columns = ['T1',    'ED/Hosp Arrival Date',    'Age in Years',    'Gender',  'Levels',  'ICD',   'Trauma Type', 'Report of physical abuse',    'Injury Comments', 'Airbag Deployment',   'Patient Position in Vehicle',
+              'Safet Equipment Issues',    'Child Restraint', 'MV Speed',    'Fall Height', 'Transport Type',  'Transport Mode',  'Field SBP',   'Field HR',    'Field Shock Index',   'Field RR',    'Resp Assistance',
+              'RTS',   'Field GCS',   'Arrived From',    'ED LOS (mins)',   'Dispositon from  ED', 'ED SBP',  'ED HR',   'ED RR',
+              'ED GCS',    'Total Vent Days', 'Total Days in ICU',   'Admission Hosp LOS (days)',   'Total LOS (ED+Admit)',    'Received blood within 4 hrs', 'Severe Brain Injury', 'Time to 1st OR Visit (mins.)',
+              'Final Outcome-Dead or Alive',   'Discharge Disposition',   'Injury Severity Score',   'AIS 2005']
+
+# Taking the rows with level 1 and 2 trauma levels
+#df = df.loc[df['Levels'].isin(['1', '2'])]
+
+#Taking the rows with injury comments which contain the ACS gun shot critertia
+df_injury_comments = df[df['Injury Comments'].str.contains("gun", na = False) & (df['Injury Comments'].str.contains("abdomen", na = False) | df['Injury Comments'].str.contains("chest", na = False) | df['Injury Comments'].str.contains("head", na = False))]
+print df_injury_comments['Injury Comments']
+print "The size of injury comments data frame is: "
+print len(df_injury_comments)
+
+#Taking the rows with injury comments which contain Field GCS lesser than or equal to 8
+df_GCS = df[df['Field GCS'] <= 8]
+print df_GCS['Field GCS']
+print "The size of GCS data frame is: "
+print len(df_GCS)
+
+
+df['ED GCS'] = df['ED GCS'].replace(['*NA', '*ND', '*BL'], value = ['0', '0', '0'])
+
+#Dropping all the rows with null values
+list1 = ['Field GCS', 'ED GCS']
+
+for x in list1:
+    df = df[pd.notnull(df[x])]
+
+df[['Field GCS', 'ED GCS']] = df[['Field GCS', 'ED GCS']].apply(pd.to_numeric)
+
+# print df['ED GCS']
+# print df['Field GCS']
+
+#Taking the rows which contains difference of Field GCS and ED GCS greater than or equal to 2
+print "Diff between the GCS's are: "
+df_diff_GCS = df[(df['Field GCS'] - df['ED GCS']) >= 2]
+print len (df_diff_GCS)
+
+
+df_age_specific = df[(((df['Age in Years'] >= 4) & (df['Age in Years'] <= 6)) & (df['Field SBP'] < 90)) | (((df['Age in Years'] >= 7) & (df['Age in Years'] <= 16)) & (df['Field SBP'] < 100)) ]
+print len (df_age_specific)
+
+frames = [df_injury_comments, df_GCS, df_diff_GCS, df_age_specific]
+result = pd.concat(frames)
+
+print result
+
+# # Create a Pandas Excel writer using XlsxWriter as the engine.
+# writer = pd.ExcelWriter('pandas_simple.xlsx', engine='xlsxwriter')
+#
+# # Convert the dataframe to an XlsxWriter Excel object.
+# result.to_excel(writer, sheet_name='Sheet1')
+#
+# # Close the Pandas Excel writer and output the Excel file.
+# writer.save()
+
+
