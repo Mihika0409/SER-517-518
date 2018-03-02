@@ -1,6 +1,10 @@
 import pandas as pd
 from sklearn.decomposition import FactorAnalysis
 
+from sklearn import decomposition, preprocessing
+
+import numpy as np
+
 import pandas as pd
 
 df = pd.read_csv('newoutputfile.csv', header = None, error_bad_lines=False)
@@ -20,16 +24,22 @@ list = X.values.tolist()
 
 factor = FactorAnalysis().fit(list)
 
-print pd.DataFrame(factor.components_, columns=variable_names)
+#print pd.DataFrame(factor.components_, columns=variable_names)
 
 
-factor.analyze(list, 3, rotation=None)
+X = X[~np.isnan(X).any(axis=1)]
 
-print factor.loading
+data_normal = preprocessing.scale(X)
 
-factor.get_uniqueness()
+fa = decomposition.FactorAnalysis(n_components = 1)
 
-factor.get_factor_variance()
+fa.fit(data_normal)
+
+for score in fa.score_samples(data_normal):
+    print score
+
+
+
 
 
 
