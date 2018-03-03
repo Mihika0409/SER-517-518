@@ -1,5 +1,7 @@
 import pandas as pd
 import math
+from sklearn.linear_model import LogisticRegression
+import sklearn as sk
 import xlsxwriter
 
 
@@ -51,7 +53,20 @@ print len (df_age_specific)
 frames = [df_injury_comments, df_GCS, df_diff_GCS, df_age_specific]
 result = pd.concat(frames)
 
-print result
+count = 0;
+
+result = result.loc[result['Levels'].isin(['1', '2'])]
+print len(result)
+
+for i in result['Levels']:
+    if i == '1':
+        count = count + 1
+
+print "The count of level 1's are:"
+print count
+
+print "The accuracy is "
+print float(count)/float(len(result))
 
 # # Create a Pandas Excel writer using XlsxWriter as the engine.
 # writer = pd.ExcelWriter('pandas_simple.xlsx', engine='xlsxwriter')
@@ -62,4 +77,51 @@ print result
 # # Close the Pandas Excel writer and output the Excel file.
 # writer.save()
 
+#*****************************************************************************
 
+df = pd.read_csv('/Users/Pramod/Desktop/SER517/Trauma2.csv', header = None, error_bad_lines=False)
+df.columns = ['T1',    'ED/Hosp Arrival Date',    'Age in Years',    'Gender',  'Levels',  'ICD-10 E-code',   'Trauma Type', 'Report of physical abuse',    'Injury Comments', 'Airbag Deployment',   'Patient Position in Vehicle',
+              'Safet Equipment Issues',    'Child Restraint', 'MV Speed',    'Fall Height', 'Transport Type',  'Transport Mode',  'Field SBP',   'Field HR',    'Field Shock Index',   'Field RR',    'Resp Assistance',
+              'RTS',   'Field GCS',   'Arrived From',    'ED LOS (mins)',   'Dispositon from  ED', 'ED SBP',  'ED HR',   'ED RR',
+              'ED GCS',    'Total Vent Days', 'Total Days in ICU',   'Admission Hosp LOS (days)',   'Total LOS (ED+Admit)',    'Received blood within 4 hrs', 'Severe Brain Injury', 'Time to 1st OR Visit (mins.)',
+              'Final Outcome-Dead or Alive',   'Discharge Disposition',   'Injury Severity Score',   'AIS 2005']
+
+#print df.head()
+df = df[['Levels', 'Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS']]
+
+result = result[['Levels', 'Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS']]
+#print df.head()
+
+# Taking only the rows with levels 1 and 2 trauma levels
+df = df.loc[df['Levels'].isin(['1', '2'])]
+
+#Dropping all the rows with null values
+list1 = ['Levels', 'Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS']
+
+for x in list1:
+    df = df[pd.notnull(df[x])]
+
+
+for y in list1:
+    result = result[pd.notnull(result[y])]
+
+
+df['Gender'] = df['Gender'].replace(['M', 'F'], value = ['1', '2'])
+result['Gender'] = result['Gender'].replace(['M', 'F'], value = ['1', '2'])
+
+#Taking the target variable
+Y_train = df['Levels']
+Y_test = result['Levels']
+#print y
+#Taking the input variable
+X_train = df.drop('Levels', 1)
+X_test = result.drop('Levels', 1)
+
+lr = LogisticRegression()
+lr.fit(X_train, Y_train)
+
+accuracy_training = lr.score(X_train, Y_train)
+print('Training Accuracy: %.3f' % accuracy_training)
+
+accuracy = lr.score(X_test, Y_test)
+print('Test Accuracy: %.3f' % accuracy)
