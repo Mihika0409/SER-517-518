@@ -120,7 +120,7 @@ X_test = result.drop('Levels', 1)
 lr = LogisticRegression()
 lr.fit(X_train, Y_train)
 
-print "The accuracies of logistic regression is: "
+print "The accuracies of logistic regression is:"
 
 accuracy_training = lr.score(X_train, Y_train)
 print('Training Accuracy: %.3f' % accuracy_training)
