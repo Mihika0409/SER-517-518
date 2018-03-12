@@ -57,3 +57,72 @@ print ("The length of Injury comments dataframe is:" + str(len(df_injuryComments
 frames = [df_injuryComments, df_GCS, df_GCS_diff, df_age]
 result = pd.concat(frames)
 print(len(result))
+
+#Considering only the rows with level 1 and level 2 trauma levels
+result = result.loc[result['Levels'].isin(['1', '2'])]
+lcount = 0
+
+print(len(result))
+for i in result['Levels']:
+    if i == '1':
+        lcount = lcount + 1
+
+#print("The count of level 1's are: " + lcount)
+
+df = pd.read_csv('/Users/vc/Downloads/Trauma_dataset.csv')
+df.columns = ['T1',    'ED/Hosp Arrival Date',    'Age in Years',    'Gender',  'Levels',  'ICD-10 E-code',   'Trauma Type',
+              'Report of physical abuse',    'Injury Comments', 'Airbag Deployment',   'Patient Position in Vehicle',  'Safet Equipment Issues',
+              'Child Restraint', 'MV Speed',    'Fall Height', 'Transport Type',  'Transport Mode',  'Field SBP',   'Field HR',
+              'Field Shock Index',   'Field RR',    'Resp Assistance', 'RTS',   'Field GCS',   'Arrived From', 'ED LOS (mins)',
+              'Dispositon from  ED', 'ED SBP',  'ED HR',   'ED RR', 'ED GCS',    'Total Vent Days', 'Total Days in ICU',
+              'Admission Hosp LOS (days)',   'Total LOS (ED+Admit)',    'Received blood within 4 hrs', 'Severe Brain Injury',
+              'Time to 1st OR Visit (mins.)', 'Final Outcome-Dead or Alive',   'Discharge Disposition',   'Injury Severity Score', 'AIS 2005']
+
+df = df[['Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS', 'Levels']]
+result = result[['Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS', 'Levels']]
+
+df = df.loc[df['Levels'].isin(['1', '2'])]
+
+# Dropping null rows
+list = ['Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS', 'Levels']
+for i in list:
+    df = df[pd.notnull(df[i])]
+
+
+for j in list:
+    result = result[pd.notnull(result[j])]
+
+
+df['Levels'] = df['Levels'].replace(['1', '2'], value = [0 , 1])
+result['Levels'] = result['Levels'].replace(['1', '2'], value = [0 , 1])
+
+df['Gender'] = df['Gender'].replace(['M', 'F'], value = ['1', '2'])
+result['Gender'] = result['Gender'].replace(['M', 'F'], value = ['1', '2'])
+#Input variables
+X_train = df.drop('Levels', 1)
+X_test = result.drop('Levels', 1)
+
+#Target variables
+Y_train = df['Levels']
+Y_test = result['Levels']
+print("Train_x Shape :: ", X_train.shape)
+print("Train_y Shape :: ", Y_train.shape)
+print("Test_x Shape :: ", X_test.shape)
+print("Test_y Shape :: ", Y_test.shape)
+
+
+def random_forest_classifier(X_train, Y_train):
+    clf = RandomForestClassifier()
+    clf.fit(X_train, Y_train)
+    return clf
+
+trained_model = random_forest_classifier(X_train, Y_train)
+print ("Trained model :: ", trained_model)
+predictions = trained_model.predict(X_test)
+
+#for i in xrange(0,5):
+ #   print ("Actual outcome :: {} and Predicted outcome :: {}".format(list(Y_test)[i], predictions[i]))
+
+print ("Train Accuracy :: ", accuracy_score(Y_train, trained_model.predict(X_train)))
+print ("Test Accuracy :: ", accuracy_score(Y_test, predictions))
+print ("Confusion matrix ", confusion_matrix(Y_test, predictions))
