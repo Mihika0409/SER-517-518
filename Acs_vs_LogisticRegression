@@ -65,7 +65,7 @@ for i in result['Levels']:
 print "The count of level 1's are:"
 print count
 
-print "The accuracy is "
+print "The accuracy of ACS 6 criteria is "
 print float(count)/float(len(result))
 
 # # Create a Pandas Excel writer using XlsxWriter as the engine.
@@ -120,8 +120,12 @@ X_test = result.drop('Levels', 1)
 lr = LogisticRegression()
 lr.fit(X_train, Y_train)
 
+print "The accuracies of logistic regression is: "
+
 accuracy_training = lr.score(X_train, Y_train)
 print('Training Accuracy: %.3f' % accuracy_training)
 
 accuracy = lr.score(X_test, Y_test)
 print('Test Accuracy: %.3f' % accuracy)
+
+
