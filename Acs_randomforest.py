@@ -1,5 +1,7 @@
 import pandas as pd
 import sklearn.preprocessing as sk
+import unicodecsv as unicodecsv
+import csv
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
@@ -8,6 +10,21 @@ from collections import Counter
 from sklearn.datasets import make_classification
 from imblearn.over_sampling import SMOTE
 import matplotlib.pyplot as plt
+from xlrd import open_workbook
+
+# Converts the xls file to csv
+from xlrd.timemachine import xrange
+
+'''def xls2csv (xls_filename, csv_filename):
+    wb = open_workbook(xls_filename)
+    sh = wb.sheet_by_index(0)
+    fh = open(csv_filename,"wb")
+    csv_out = unicodecsv.writer(fh, encoding='utf-8')
+    for row_number in xrange (sh.nrows):
+        csv_out.writerow(sh.row_values(row_number))
+    fh.close()
+    return csv_filename
+csv_file = xls2csv('Copy of Trauma Data Sample From Jan 2016 to Jan 2017.xlsx','csv.csv')'''
 
 df = pd.read_csv('/Users/vc/Downloads/Trauma_dataset.csv')
 df.columns = ['T1',    'ED/Hosp Arrival Date',    'Age in Years',    'Gender',  'Levels',  'ICD-10 E-code',   'Trauma Type',
