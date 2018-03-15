@@ -6,12 +6,13 @@ fields = ['Age in Years', 'Gender', 'MV Speed','Resp Assistance','RTS','Field GC
 df = pd.read_csv(
     filepath_or_buffer='/Users/satishnandan/Desktop/TraumaActivation/mvSpeed10.csv',
     usecols=fields)
-fields1 = ['Total LOS (ED+Admit)']
+fields1 = ['Total LOS (ED+Admit)','ED SBP','ED HR','ED RR','ED GCS','Total Vent Days','Injury Severity Score']
 Y = pd.read_csv(
     filepath_or_buffer='/Users/satishnandan/Desktop/TraumaActivation/mvSpeed10.csv',
-    usecols=fields1)
+    usecols=fields1).replace(['*NA', '*ND', '*BL'], [0, 0, 0])
 factor = FactorAnalysis(n_components=1, random_state=101).fit(df.transpose())
 frame = pd.DataFrame(factor.components_).transpose()
-print Y.join(frame).shape
-cor_matrix = np.corrcoef(Y.T.values, frame.T.values)
+
+cor_matrix = np.corrcoef(Y.join(frame).T.values)
+
 print cor_matrix
