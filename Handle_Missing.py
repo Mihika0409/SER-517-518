@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import sklearn.preprocessing as sk
 import unicodecsv as unicodecsv
 import csv
@@ -42,15 +43,39 @@ df['Levels'] = df['Levels'].replace(['1', '2'], value = [0 , 1])
 levels = ["Levels"]
 
 #Convert the Gender attribute to numeric
-df['Gender'] = df['Gender'].replace(['M', 'F'], value = ['1', '2'])
+df['Gender'] = df['Gender'].replace(['M', 'F'], value = ['0', '1'])
 gender = ["gender"]
 
 #replace the null values in Field GCS with a default value that is 15
 df['Field GCS'] = df['Field GCS'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
-df['Field SBP'] = df['Field SBP'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
-df['Field HR'] = df['Field HR'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
-df['Field RR'] = df['Field RR'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
 
+#df['Field SBP'] = df['Field SBP'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
+df['Field SBP'] = np.where((int(df['Age in Years'])<= 5 &
+                            (df['Field SBP'] == '*NA' | df['Field SBP'] == '*ND' |
+                             df['Field SBP'] == '*BL')),'90',df['Field SBP'])
+
+df['Field SBP'] = np.where((int(df['Age in Years'])> 5 & int(df['Age in Years'])<= 13
+                            (df['Field SBP'] == '*NA' | df['Field SBP'] == '*ND' |
+                             df['Field SBP'] == '*BL')),'105',df['Field SBP'])
+
+df['Field SBP'] = np.where((int(df['Age in Years'])> 13 & int(df['Age in Years'])<= 19
+                            (df['Field SBP'] == '*NA' | df['Field SBP'] == '*ND' |
+                             df['Field SBP'] == '*BL')),'117',df['Field SBP'])
+
+#df['Field HR'] = df['Field HR'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
+df['Field HR'] = np.where((int(df['Age in Years'])<= 5 &
+                            (df['Field HR'] == '*NA' | df['Field HR'] == '*ND' |
+                             df['Field HR'] == '*BL')),'100',df['Field HR'])
+
+df['Field HR'] = np.where((int(df['Age in Years'])> 5 & int(df['Age in Years'])<= 13
+                            (df['Field HR'] == '*NA' | df['Field HR'] == '*ND' |
+                             df['Field HR'] == '*BL')),'90',df['Field HR'])
+
+df['Field HR'] = np.where((int(df['Age in Years'])> 13 & int(df['Age in Years'])<= 19
+                            (df['Field HR'] == '*NA' | df['Field HR'] == '*ND' |
+                             df['Field HR'] == '*BL')),'80',df['Field HR'])
+
+df['Field RR'] = df['Field RR'].replace(['*NA', '*ND', '*BL'], value = ['20', '20', '20'])
 
 #replace the null values in ED GCS with a default value that is 15
 df['ED GCS'] = df['ED GCS'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
