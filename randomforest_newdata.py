@@ -27,6 +27,40 @@ cols = df.columns
 for col in cols:
     df = df[pd.notnull(df[col])]
 
+#replace the null values in Field GCS with a default value that is 15
+df['Field GCS'] = df['Field GCS'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
+
+#df['Field SBP'] = df['Field SBP'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
+df['Field SBP'] = np.where((int(df['Age in Years'])<= 5 &
+                            (df['Field SBP'] == '*NA' | df['Field SBP'] == '*ND' |
+                             df['Field SBP'] == '*BL')),'90',df['Field SBP'])
+
+df['Field SBP'] = np.where((int(df['Age in Years'])> 5 & int(df['Age in Years'])<= 13
+                            (df['Field SBP'] == '*NA' | df['Field SBP'] == '*ND' |
+                             df['Field SBP'] == '*BL')),'105',df['Field SBP'])
+
+df['Field SBP'] = np.where((int(df['Age in Years'])> 13 & int(df['Age in Years'])<= 19
+                            (df['Field SBP'] == '*NA' | df['Field SBP'] == '*ND' |
+                             df['Field SBP'] == '*BL')),'117',df['Field SBP'])
+
+#df['Field HR'] = df['Field HR'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
+df['Field HR'] = np.where((int(df['Age in Years'])<= 5 &
+                            (df['Field HR'] == '*NA' | df['Field HR'] == '*ND' |
+                             df['Field HR'] == '*BL')),'100',df['Field HR'])
+
+df['Field HR'] = np.where((int(df['Age in Years'])> 5 & int(df['Age in Years'])<= 13
+                            (df['Field HR'] == '*NA' | df['Field HR'] == '*ND' |
+                             df['Field HR'] == '*BL')),'90',df['Field HR'])
+
+df['Field HR'] = np.where((int(df['Age in Years'])> 13 & int(df['Age in Years'])<= 19
+                            (df['Field HR'] == '*NA' | df['Field HR'] == '*ND' |
+                             df['Field HR'] == '*BL')),'80',df['Field HR'])
+
+df['Field RR'] = df['Field RR'].replace(['*NA', '*ND', '*BL'], value = ['20', '20', '20'])
+
+#replace the null values in ED GCS with a default value that is 15
+df['ED GCS'] = df['ED GCS'].replace(['*NA', '*ND', '*BL'], value = ['15', '15', '15'])
+
 df['Levels'] = df['Levels'].replace(['1', '2'], value = [0 , 1])
 Y = df["Levels"]
 df = df.drop('Levels', axis = 1)
@@ -37,9 +71,6 @@ le = sk.LabelEncoder()
 #gender_tranform = le.fit_transform(df['Gender'])
 df['Gender'] = df['Gender'].replace(['M', 'F'], value = ['1', '2'])
 #df['Levels'] = df['Levels'].replace(['N'])
-
-# Taking only the rows with levels 1 and 2 trauma levels
-
 
 X, Y = make_classification(n_classes=2, class_sep=2,
                            weights=[0.2, 0.8], n_informative=3, n_redundant=1, flip_y=0,
