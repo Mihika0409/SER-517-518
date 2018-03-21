@@ -77,3 +77,57 @@ print "train Accuracy is ", accuracy_score(y_train,y_pred_train_en)*100
 
 print "testing error is ", (1-accuracy_score(y_test,y_pred_en))*100
 print "training error is ", (1-accuracy_score(y_train,y_pred_train_en))*100
+
+
+scores = cross_val_score(estimator=clf_gini,     # Model to test
+                X= X_train,
+                y = y_train,      # Target variable
+                scoring = "accuracy",               # Scoring metric
+                cv=10)                              # Cross validation folds
+
+scores=scores*100
+print("Accuracy per fold: ")
+print(scores)
+print("Average accuracy: ", scores.mean())
+
+#.......cross validation for gini index using test data ......
+
+scores_test = cross_val_score(estimator=clf_gini,     # Model to test
+                X= X_test,
+                y = y_test,      # Target variable
+                scoring = "accuracy",               # Scoring metric
+                cv=10)                              # Cross validation folds
+
+scores_test=scores_test*100
+print("Accuracy per fold: ")
+print(scores_test)
+print("Average accuracy: ", scores_test.mean())
+
+#.......cross validation for entropy  using training data ......
+en_scores = cross_val_score(estimator=clf_entropy,     # Model to test
+                X= X_train,
+                y = y_train,      # Target variable
+                scoring = "accuracy",               # Scoring metric
+                cv=10)                              # Cross validation folds
+
+en_scores=en_scores*100
+print("Accuracy per fold: ")
+print(en_scores)
+print("Average accuracy: ", en_scores.mean())
+
+#.......cross validation for entropy using test data ......
+
+en_scores_test = cross_val_score(estimator=clf_entropy,     # Model to test
+                X= X_test,
+                y = y_test,                                 # Target variable
+                scoring = "accuracy",                       # Scoring metric
+                cv=10)                                      # Cross validation folds
+
+en_scores_test=en_scores_test*100
+print("Accuracy per fold: ")
+print(en_scores_test)
+print("Average accuracy: ", en_scores_test.mean())
+
+
+
+
