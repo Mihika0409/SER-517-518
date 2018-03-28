@@ -53,6 +53,7 @@ df[['Levels']] = df[['Levels']].replace(['N'], [4])
 df[['Report of physical abuse']] = df[['Report of physical abuse']].replace(['*BL'], ['N'])
 df[['Received blood within 4 hrs']] = df[['Received blood within 4 hrs']].replace(['*BL'], ['N'])
 df[['Severe Brain Injury']] = df[['Severe Brain Injury']].replace(['*BL'], ['N'])
+df[['Time to 1st OR Visit (mins.)']] = df[['Time to 1st OR Visit (mins.)']].replace(['*BL'], ['0'])
 
 df.to_csv("sample.csv")
 
