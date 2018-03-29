@@ -58,9 +58,19 @@ with open('/Users/satishnandan/Desktop/TraumaActivation/m2.csv', 'rb') as inp, o
         else:
             row.append('0')
         writer.writerow(row)
+ 
+#Modified the RespAssistance Column.
+with open('/Users/satishnandan/Desktop/TraumaActivation/m1.csv', 'rb') as inp, open('/Users/satishnandan/Desktop/TraumaActivation/m4.csv', 'wb') as out:
+    writer = csv.writer(out)
+    for row in csv.reader(inp):
+      if row[21] == "Assisted Respiratory Rate":
+          row[21] = '1'
+      else:
+          row[21] = '0'
+      writer.writerow(row)
         
 #Data frame to replace blank values with mean values.        
-fields = ['Age in Years', 'Gender', 'MV Speed','RTS','Field GCS','Field SBP', 'Field HR', 'Field RR','Intubated']
+fields = ['Age in Years', 'Gender', 'MV Speed','RTS','Field GCS','Field SBP', 'Field HR', 'Field RR','Intubated','Resp Assistance']
 df = pd.read_csv(
     filepath_or_buffer='/Users/satishnandan/Desktop/TraumaActivation/m1.csv',
     usecols=fields)
