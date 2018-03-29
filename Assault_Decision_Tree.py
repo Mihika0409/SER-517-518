@@ -1,12 +1,13 @@
+
 import pandas as pd
-import pandas as pd
-import sklearn.preprocessing as sk
-from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
 from sklearn.tree import DecisionTreeClassifier
+
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import precision_recall_fscore_support
 
 df = pd.read_csv('/Users/Pramod/Desktop/SER517/Original datasets/FullData.csv', header = None, error_bad_lines=False)
 df.columns = ['T1#', 'ED/Hosp Arrival Date', 'Age in Years', 'Gender', 'Levels', 'ICD-10 E-code (after 1/2016)', 'ICD-9 E-code (before 2016)',
@@ -96,7 +97,7 @@ print X
 # Applying Logistic regression on the pre factors
 X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.20, random_state=1)
 
-classification_pipeline = Pipeline([('pca', PCA(n_components=4)), ('classifier',DecisionTreeClassifier(random_state=1))])
+classification_pipeline = Pipeline([('StandardScalar', StandardScaler()), ('pca', PCA(n_components=4)), ('classifier',DecisionTreeClassifier(random_state=1))])
 #
 classification_pipeline.fit(X_train,Y_train)
 
@@ -106,3 +107,29 @@ print('Test Accuracy: %.3f' % accuracy)
 
 accuracy_training = classification_pipeline.score(X_train, Y_train)
 print('Training Accuracy: %.3f' % accuracy_training)
+
+
+y_pred = classification_pipeline.predict(X_test)
+
+tn, fp, fn, tp = confusion_matrix(Y_test, y_pred).ravel()
+print "The metrics True Negatives, False Positive, False Negatives, True Positive in the order are: "
+print (tn, fp, fn, tp)
+print ""
+# confmat = confusion_matrix(y_true=Y_test,y_pred=y_pred)
+# print(confmat)
+
+# Printing out the different metrics
+print "The precision, recall and f-score are:"
+print (precision_recall_fscore_support(Y_test, y_pred, average='macro'))
+
+over_triage_count = 0;
+
+y_test = Y_test.tolist()
+Y_pred = y_pred.tolist()
+
+for x in range(0, len(y_pred)):
+    if Y_pred[x] == '1' and y_test[x] == '2':
+        over_triage_count = over_triage_count + 1
+
+print "The over triage percentage is:"
+print float(over_triage_count)/float(len(Y_pred))
