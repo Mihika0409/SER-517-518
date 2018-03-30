@@ -7,4 +7,22 @@ df_injury = df_injury[pd.notnull(df['Injury Comments'])]
 
 df_injury.to_csv("Injury.csv")'''
 
-print df
+df_fall = df[df['ICD'].str.contains("FALL", na=False)]
+df_fall.to_csv("fall.csv")
+
+df_notfall = df[~df['ICD'].str.contains("FALL", na=False)]
+df_notfall.to_csv("NotFall.csv")
+
+df_mv = df_notfall[
+    df_notfall['ICD'].str.contains("MOTOR", na=False) | df_notfall['ICD'].str.contains("CYCLE", na=False) | df_notfall[
+        'ICD'].str.contains("CAR", na=False)]
+df_mv.to_csv("MotorVehicle.csv")
+
+df_notMV = df_notfall[
+    ~df_notfall['ICD'].str.contains("MOTOR", na=False) & ~df_notfall['ICD'].str.contains("CYCLE", na=False) & ~
+    df_notfall['ICD'].str.contains("CAR", na=False)]
+df_notMV.to_csv("NotMV.csv")
+
+print len(df_fall)
+print len(df_mv)
+print len(df_notMV)
