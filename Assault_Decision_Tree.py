@@ -1,4 +1,3 @@
-
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
@@ -123,6 +122,7 @@ print "The precision, recall and f-score are:"
 print (precision_recall_fscore_support(Y_test, y_pred, average='macro'))
 
 over_triage_count = 0;
+total_ones = 0
 
 y_test = Y_test.tolist()
 Y_pred = y_pred.tolist()
@@ -131,5 +131,11 @@ for x in range(0, len(y_pred)):
     if Y_pred[x] == '1' and y_test[x] == '2':
         over_triage_count = over_triage_count + 1
 
+for x in range(0, len(y_pred)):
+    if Y_pred[x] == '1':
+        total_ones = total_ones + 1
+
+print over_triage_count
+
 print "The over triage percentage is:"
-print float(over_triage_count)/float(len(Y_pred))
+print float(over_triage_count)/float(total_ones)
