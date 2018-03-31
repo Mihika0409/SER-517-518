@@ -10,6 +10,8 @@ from imblearn.over_sampling import SMOTE
 import numpy as np
 import matplotlib.pyplot as plt
 
+ran = RandomForestClassifier()
+
 #Training the random forest classifier with the scikit learn
 def random_forest_classifier(features, target):
     clf = RandomForestClassifier()
@@ -63,36 +65,43 @@ df['RTS'] = df['RTS'].replace(['*NA','*ND','*BL',''],'7.65')
 df['Field GCS']=df['Field GCS'].replace(['*NA','*ND','*BL',''],'14.54')
 
 #The missing values imputed into the dataframe based on gender
-df['RTS'] = np.where(((df['RTS'] == '*NA') | (df['RTS'] == '*ND') | (df['RTS'] == '*BL') | (df['RTS'] == '')) & (df['Gender'] == 1),'6.15',df['RTS'])
+'''df['RTS'] = np.where(((df['RTS'] == '*NA') | (df['RTS'] == '*ND') | (df['RTS'] == '*BL') | (df['RTS'] == '')) & (df['Gender'] == 1),'6.15',df['RTS'])
 df['RTS'] = np.where(((df['RTS'] == '*NA') | (df['RTS'] == '*ND') | (df['RTS'] == '*BL') | (df['RTS'] == '')) & (df['Gender'] == 0),'7.75',df['RTS'])
 df['Field GCS'] = np.where(((df['Field GCS'] == '*NA') | (df['Field GCS'] == '*ND') | (df['Field GCS'] == '*BL') | (df['Field GCS'] == '')) & (df['Gender'] == 1),'10.24',df['Field GCS'])
 df['Field GCS'] = np.where(((df['Field GCS'] == '*NA') | (df['Field GCS'] == '*ND') | (df['Field GCS'] == '*BL') | (df['Field GCS'] == '')) & (df['Gender'] == 0),'14.90',df['Field GCS'])
 df['Field SBP'] = np.where(((df['Field SBP'] == '*NA') | (df['Field SBP'] == '*ND') | (df['Field SBP'] == '*BL') | (df['Field SBP'] == '')) & (df['Gender'] == 1),'111.50',df['Field SBP'])
 df['Field SBP'] = np.where(((df['Field SBP'] == '*NA') | (df['Field SBP'] == '*ND') | (df['Field SBP'] == '*BL') | (df['Field SBP'] == '')) & (df['Gender'] == 0),'120.25',df['Field SBP'])
 df['Field HR'] = np.where(((df['Field HR'] == '*NA') | (df['Field HR'] == '*ND') | (df['Field HR'] == '*BL') | (df['Field HR'] == '')) & (df['Gender'] == 1),'106',df['Field HR'])
-df['Field HR'] = np.where(((df['Field HR'] == '*NA') | (df['Field HR'] == '*ND') | (df['Field HR'] == '*BL') | (df['Field HR'] == '')) & (df['Gender'] == 0),'110',df['Field HR'])
-
+df['Field HR'] = np.where(((df['Field HR'] == '*NA') | (df['Field HR'] == '*ND') | (df['Field HR'] == '*BL') | (df['Field HR'] == '')) & (df['Gender'] == 0),'110',df['Field HR'])'''
 df['Levels'] = df['Levels'].replace(['1', '2'], value = [0 , 1])
 Y = df["Levels"]
 df = df.drop('Levels', axis = 1)
 
-#print("Shape: " + str(df.shape[0]) + " " + str(Y.shape[0]))
-print(Y.value_counts())
+def main():
+    #df = pd.read_csv('/Users/vc/Downloads/Trauma_dataset.csv')
+    headers = ['Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS','Levels']
+    print(headers)
+    # df = handle_missing_values(df, headers[7], None)
+    train_x, test_x, train_y, test_y = train_test_split(df, Y, test_size=0.20, random_state=1)
 
-X, Y = make_classification(n_classes=2, class_sep=2,
-                           weights=[0.2, 0.8], n_informative=3, n_redundant=1, flip_y=0,
-                           n_features=8, n_clusters_per_class=1, n_samples=4943, random_state=10)
-print('Original dataset shape {}'.format(Counter(Y)))
-sm = SMOTE(random_state=42)
-#print(df.shape)
-#print(Y.shape)
+    print("Train_x Shape :: ", train_x.shape)
+    print("Train_y Shape :: ", train_y.shape)
+    print("Test_x Shape :: ", test_x.shape)
+    print("Test_y Shape :: ", test_y.shape)
 
-X_res, Y_res = sm.fit_sample(df, Y)
-#print(Y_res[:10], Y[:10])
+    #Performing predictions
+    trained_model = random_forest_classifier(train_x, train_y)
+    print("Trained model :: ", trained_model)
+    predictions = trained_model.predict(test_x)
 
-clf, cv_scores = random_forest_classifier(X_res, Y_res)
-print(sum(cv_scores)/ len(cv_scores))
-feature_importances(clf, df)
-import sys
-sys.exit()
-print('Resampled dataset shape {}'.format(Counter(Y_res)))
+    for i in range(0, 5):
+        print("Actual outcome :: {} and Predicted outcome :: {}".format(list(test_y)[i], predictions[i]))
+
+    #Calculating Train and Test accuracy
+    print("Train Accuracy :: ", accuracy_score(train_y, trained_model.predict(train_x)))
+    print("Test Accuracy  :: ", accuracy_score(test_y, predictions))
+    print(" Confusion matrix ", confusion_matrix(test_y, predictions))
+
+
+if __name__ == "__main__":
+    main()
