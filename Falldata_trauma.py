@@ -157,29 +157,12 @@ print("Accuracy per fold: ")
 print(en_scores_test)
 print("Average accuracy for entropy testing: ", en_scores_test.mean())
 
+# Confusion matrix  matrix with the Gini index
 conf_matrix = metrics.confusion_matrix(y_test, y_pred_en)
 print conf_matrix
 
+# confusion matrix with the entropy
 conf_matrix2 = metrics.confusion_matrix(y_test, y_pred)
 print conf_matrix2
 
 
-def perf_measure(y_test, y_pred):
-    TP = 0
-    FP = 0
-    TN = 0
-    FN = 0
-
-    for i in range(len(y_pred)):
-        if y_test[i]==y_pred[i]==1:
-           TP += 1
-        if y_pred[i]==1 and y_test[i]!=y_pred[i]:
-           FP += 1
-        if y_test[i]==y_pred[i]==2:
-           TN += 1
-        if y_pred[i]==2 and y_test[i]!=y_pred[i]:
-           FN += 1
-    return TP,FP,TN,FN
-
-result = perf_measure(y_test,y_pred)
-print(result)
