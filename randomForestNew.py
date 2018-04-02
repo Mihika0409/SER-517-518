@@ -89,19 +89,42 @@ def main():
     print("Test_x Shape :: ", test_x.shape)
     print("Test_y Shape :: ", test_y.shape)
 
-    #Performing predictions
-    trained_model = random_forest_classifier(train_x, train_y)
-    print("Trained model :: ", trained_model)
-    predictions = trained_model.predict(test_x)
+    # #Performing predictions
+    # trained_model = random_forest_classifier(train_x, train_y)
+    # print("Trained model :: ", trained_model)
+    # predictions = trained_model.predict(test_x)
 
-    for i in range(0, 5):
-        print("Actual outcome :: {} and Predicted outcome :: {}".format(list(test_y)[i], predictions[i]))
+    # for i in range(0, 5):
+    #     print("Actual outcome :: {} and Predicted outcome :: {}".format(list(test_y)[i], predictions[i]))
 
-    #Calculating Train and Test accuracy
-    print("Train Accuracy :: ", accuracy_score(train_y, trained_model.predict(train_x)))
-    print("Test Accuracy  :: ", accuracy_score(test_y, predictions))
-    print(" Confusion matrix ", confusion_matrix(test_y, predictions))
+    # #Calculating Train and Test accuracy
+    # print("Train Accuracy :: ", accuracy_score(train_y, trained_model.predict(train_x)))
+    # print("Test Accuracy  :: ", accuracy_score(test_y, predictions))
+    # print(" Confusion matrix ", confusion_matrix(test_y, predictions))
 
+    ran.fit(train_x, train_y)
+    print("The ran values are:")
+    print (ran.score(test_x, test_y))
+
+    test_list = test_y.tolist()
+    y_pred = ran.predict(test_x)
+    pred_list = y_pred.tolist()
+
+    M = confusion_matrix(test_list,pred_list)
+    print(M)
+
+    over_triage_count = 0
+    total_ones = 0
+
+    for x in range(0, len(pred_list)):
+        if pred_list[x] == 0 and test_list[x] == 1:
+            over_triage_count = over_triage_count + 1
+
+    for x in range(0, len(pred_list)):
+        if pred_list[x] == 0:
+            total_ones = total_ones + 1
+
+    print(over_triage_count/total_ones)
 
 if __name__ == "__main__":
     main()
