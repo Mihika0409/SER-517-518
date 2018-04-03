@@ -1,4 +1,14 @@
 import pandas as pd
+import sklearn.preprocessing as sk
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+from sklearn.decomposition import PCA
+
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import precision_recall_fscore_support
+
 
 df = pd.read_csv('/Users/Pramod/Desktop/SER517/Original datasets/FullData.csv', header = None, error_bad_lines=False)
 df.columns = ['T1#', 'ED/Hosp Arrival Date', 'Age in Years', 'Gender', 'Levels', 'ICD-10 E-code (after 1/2016)', 'ICD-9 E-code (before 2016)',
@@ -86,4 +96,24 @@ for x in range(0, len(list2)):
 print result
 #*************************************************************************
 
+#Taking the target variable
+y = result['Levels']
+#print y
+#Taking the input variable
+X = result.drop('Levels', 1)
+print X
+
+# Applying Logistic regression on the pre factors
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.20, random_state=1)
+
+classification_pipeline = Pipeline([('pca', PCA(n_components=7)), ('classifier',LogisticRegression(random_state=1))])
+#
+classification_pipeline.fit(X_train,Y_train)
+
+#compute the accuracy of the model on test data
+accuracy = classification_pipeline.score(X_test, Y_test)
+print('Test Accuracy: %.3f' % accuracy)
+
+accuracy_training = classification_pipeline.score(X_train, Y_train)
+print('Training Accuracy: %.3f' % accuracy_training)
 
