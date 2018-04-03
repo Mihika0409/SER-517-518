@@ -34,3 +34,34 @@ print("Number of rows:")
 print(len(df_assault_icd10))
 
 print("The dataframe is: ")
+
+#Both ICD 9 and 10 codes data are combined below
+frames = [df_assault_icd9, df_assault_icd10]
+result = pd.concat(frames)
+print ("The number of rows in the entire dataframe:")
+print (len(result))
+print (result)
+
+# Considering columns that we require
+result = result[['Levels', 'Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS']]
+
+# Only the level 1 and 2 trauma levels are considered
+result = result.loc[result['Levels'].isin(['1', '2'])]
+
+# Male and female are replaced with int values 1 and 2
+result['Gender'] = result['Gender'].replace(['M', 'F'], value=['1', '2'])
+
+#Replace the missing values with mean values
+result['Field SBP']=result['Field SBP'].replace(['*NA','*ND','*BL',''],'119')
+result['Field HR']=result['Field HR'].replace(['*NA','*ND','*BL',''],'110')
+result['Field RR']=result['Field RR'].replace(['*NA','*ND','*BL',''],'21')
+result['RTS'] = result['RTS'].replace(['*NA','*ND','*BL',''],'7.65')
+result['Field GCS']=result['Field GCS'].replace(['*NA','*ND','*BL',''],'14.54')
+
+#Target variable Y
+Y = result['Levels']
+#print (Y)
+
+#Input variable
+X = result.drop('Levels', 1)
+print (X)
