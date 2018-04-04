@@ -1,6 +1,7 @@
 import pandas as pd
 from scipy.stats import randint as sp_randint
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import RandomizedSearchCV
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 
@@ -87,7 +88,21 @@ y_pred = clf_gini.predict(X_test)
 
 print "Accuracy is ", accuracy_score(y_test, y_pred) * 100
 
-'''n_iter_search = 20
+X = df.values[:, 1:len(df)]
+Y = df.values[:, 0:1]
+Y = Y.astype('int')
+
+param_dist = {"max_depth": [3, None],
+              "max_features": sp_randint(1, 11),
+              "min_samples_split": sp_randint(2, 11),
+              "min_samples_leaf": sp_randint(1, 11),
+              "presort": [True, False],
+              "criterion": ["gini", "entropy"]}
+
+y = Y.reshape(-1, )
+
+clf = DecisionTreeClassifier()
+n_iter_search = 20
 random_search = RandomizedSearchCV(clf, param_distributions=param_dist, n_iter=n_iter_search)
 random_search = RandomizedSearchCV(clf, param_distributions=param_dist, n_iter=n_iter_search, return_train_score=True, refit = True, cv = 10)
 random_search.fit(X, y)
@@ -123,26 +138,3 @@ print random_search.best_score_
 print "Estimators used in this model: "
 
 print random_search.best_estimator_
-
-
-X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.20, random_state=1)
-classification_pipeline = Pipeline([('pca', PCA(n_components=7)), ('classifier',DecisionTreeClassifier(random_state=1))])
-classification_pipeline.fit(X_train,Y_train)'''
-
-'''test_accuracy = classification_pipeline.score(X_test, Y_test)
-test_accuracy = test_accuracy * 100
-print 'Test Accuracy:' + test_accuracy
-
-train_accuracy = classification_pipeline.score(X_train, Y_train)
-train_accuracy = train_accuracy * 100
-
-print 'Training Accuracy: %.3f' % train_accuracy
-
-y_pred = classification_pipeline.predict(X_test)
-
-tn, fp, fn, tp = confusion_matrix(Y_test, y_pred).ravel()
-print "The metrics True Negatives, False Positive, False Negatives, True Positive in the order are: "
-print (tn, fp, fn, tp)
-
-print "The precision, recall and f-score are:"
-print (precision_recall_fscore_support(Y_test, y_pred, average='macro'))'''
