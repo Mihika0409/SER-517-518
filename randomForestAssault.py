@@ -10,6 +10,8 @@ from imblearn.over_sampling import SMOTE
 import numpy as np
 import matplotlib.pyplot as plt
 
+ran = RandomForestClassifier()
+
 #Training the random forest classifier with the scikit learn
 def random_forest_classifier(features, target):
     clf = RandomForestClassifier()
@@ -49,8 +51,6 @@ df_assault_icd10 = df[df['ICD-10 E-code (after 1/2016)'].str.contains("ASSAULT",
 print("Number of rows:")
 print(len(df_assault_icd10))
 
-print("The dataframe is: ")
-
 #Both ICD 9 and 10 codes data are combined below
 frames = [df_assault_icd9, df_assault_icd10]
 result = pd.concat(frames)
@@ -73,28 +73,63 @@ result['Field HR']=result['Field HR'].replace(['*NA','*ND','*BL',''],'110')
 result['Field RR']=result['Field RR'].replace(['*NA','*ND','*BL',''],'21')
 result['RTS'] = result['RTS'].replace(['*NA','*ND','*BL',''],'7.65')
 result['Field GCS']=result['Field GCS'].replace(['*NA','*ND','*BL',''],'14.54')
+result['Levels'] = result['Levels'].replace(['1', '2'], value = [0 , 1])
 
 #Target variable Y
 Y = result['Levels']
 #print (Y)
 
 #Input variable
-X = result.drop('Levels', 1)
-print (X)
+result = result.drop('Levels', 1)
 
-print(Y.value_counts())
+def main():
+    #df = pd.read_csv('/Users/vc/Downloads/Trauma_dataset.csv')
+    headers = ['Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS','Levels']
+    print(headers)
+    # df = handle_missing_values(df, headers[7], None)
+    train_x, test_x, train_y, test_y = train_test_split(result, Y, test_size=0.20, random_state=1)
 
-X, Y = make_classification(n_classes=2, class_sep=2,
-                           weights=[0.2, 0.8], n_informative=3, n_redundant=1, flip_y=0,
-                           n_features=8, n_clusters_per_class=1, n_samples=4943, random_state=10)
-print('Original dataset shape {}'.format(Counter(Y)))
-sm = SMOTE(random_state=42)
-#print(df.shape)
-#print(Y.shape)
+    print("Train_x Shape :: ", train_x.shape)
+    print("Train_y Shape :: ", train_y.shape)
+    print("Test_x Shape :: ", test_x.shape)
+    print("Test_y Shape :: ", test_y.shape)
 
-X_res, Y_res = sm.fit_sample(X, Y)
-#print(Y_res[:10], Y[:10])
+    # #Performing predictions
+    # trained_model = random_forest_classifier(train_x, train_y)
+    # print("Trained model :: ", trained_model)
+    # predictions = trained_model.predict(test_x)
 
-clf, cv_scores = random_forest_classifier(X_res, Y_res)
-print(sum(cv_scores)/ len(cv_scores))
-feature_importances(clf, X)
+    # for i in range(0, 5):
+    #     print("Actual outcome :: {} and Predicted outcome :: {}".format(list(test_y)[i], predictions[i]))
+
+    # #Calculating Train and Test accuracy
+    # print("Train Accuracy :: ", accuracy_score(train_y, trained_model.predict(train_x)))
+    # print("Test Accuracy  :: ", accuracy_score(test_y, predictions))
+    # print(" Confusion matrix ", confusion_matrix(test_y, predictions))
+
+    ran.fit(train_x, train_y)
+    print("The ran values are:")
+    print (ran.score(test_x, test_y))
+
+    test_list = test_y.tolist()
+    y_pred = ran.predict(test_x)
+    pred_list = y_pred.tolist()
+
+    M = confusion_matrix(test_list,pred_list)
+    print(M)
+
+    over_triage_count = 0
+    total_ones = 0
+
+    for x in range(0, len(pred_list)):
+        if pred_list[x] == 0 and test_list[x] == 1:
+            over_triage_count = over_triage_count + 1
+
+    for x in range(0, len(pred_list)):
+        if pred_list[x] == 0:
+            total_ones = total_ones + 1
+
+    print(over_triage_count/total_ones)
+
+if __name__ == "__main__":
+    main()
