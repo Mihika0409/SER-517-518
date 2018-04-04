@@ -61,6 +61,7 @@ RTS = df['RTS']
 FieldGCS = df['Field GCS']
 AgeInYears = df['Age in Years']
 EDLOS = df['ED LOS (mins)']
+MVSpeedList = df['MV Speed']
 
 
 
@@ -79,6 +80,8 @@ avgFieldGCS = findAverage(FieldGCS)
 avgAge = findAverage(AgeInYears)
 
 AvgEDLOS = findAverage(EDLOS)
+
+avgMVSpeed = findAverage(MVSpeedList)
 
 
 
@@ -103,6 +106,12 @@ df['Report of physical abuse'] = df['Report of physical abuse'].replace(['*BL'],
 df['Trauma Type'] = df['Trauma Type'].replace(['Blunt','Penetrating'], value = ['1','0'])
 
 df['Airbag Deployment'] = df['Airbag Deployment'].replace(['*NA'], value = ['0'])
+
+df['Safet Equipment Issuest'] = df['Safet Equipment Issues'].replace(['*NA'], value = ['0'])
+
+df['Child Restraint'] = df['Child Restraint'].replace(['*NA'], value = ['0'])
+
+df['MV Speed'] = df['MV Speed'].replace(['*NA',sys.maxint], value = ['0',avgMVSpeed])
 
 
 
