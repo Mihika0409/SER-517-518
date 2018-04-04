@@ -45,7 +45,7 @@ fallDF = fallDF.loc[fallDF['Levels'].isin(['1', '2'])]
 
 
 fallDF = fallDF[
-    ['Levels', 'Fall Height', 'Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Report of physical abuse','Trauma Type']]
+    ['Levels', 'Fall Height', 'Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Report of physical abuse','Trauma Type','Airbag Deployment']]
 
 fallDF['Gender'] = fallDF['Gender'].replace(['M', 'F'], value=['1', '2'])
 
@@ -68,6 +68,9 @@ fallDF['Report of physical abuse'] = fallDF['Report of physical abuse'].replace(
 fallDF['Report of physical abuse'] = fallDF['Report of physical abuse'].replace(['N','Y'], value=['0','1'])
 
 fallDF['Trauma Type'] = fallDF['Trauma Type'].replace(['Blunt','Penetrating'], value = ['1','0'])
+
+fallDF['Airbag Deployment'] = fallDF['Airbag Deployment'].replace(['*NA'], value = ['0'])
+
 
 
 y = fallDF['Levels']
