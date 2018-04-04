@@ -89,19 +89,6 @@ def main():
     print("Test_x Shape :: ", test_x.shape)
     print("Test_y Shape :: ", test_y.shape)
 
-    # #Performing predictions
-    # trained_model = random_forest_classifier(train_x, train_y)
-    # print("Trained model :: ", trained_model)
-    # predictions = trained_model.predict(test_x)
-
-    # for i in range(0, 5):
-    #     print("Actual outcome :: {} and Predicted outcome :: {}".format(list(test_y)[i], predictions[i]))
-
-    # #Calculating Train and Test accuracy
-    # print("Train Accuracy :: ", accuracy_score(train_y, trained_model.predict(train_x)))
-    # print("Test Accuracy  :: ", accuracy_score(test_y, predictions))
-    # print(" Confusion matrix ", confusion_matrix(test_y, predictions))
-
     ran.fit(train_x, train_y)
     print("The ran values are:")
     print (ran.score(test_x, test_y))
