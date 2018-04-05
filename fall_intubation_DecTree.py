@@ -93,7 +93,87 @@ with open('/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata1.csv', 'rb') a
         
         
         
-  
+  print "test Accuracy is ", accuracy_score(y_test,y_pred)*100
+print "train Accuracy is ", accuracy_score(y_train,y_pred_train)*100
+
+print "testing error is ", (1-accuracy_score(y_test,y_pred))*100
+print "training error is ", (1-accuracy_score(y_train,y_pred_train))*100
+
+# decision tree with the information gain
+clf_entropy = DecisionTreeClassifier(criterion = "entropy", random_state = 100,max_depth=3, min_samples_leaf=5)
+
+#clf_entropy = DecisionTreeClassifier(criterion = "entropy", random_state = 100)
+clf_entropy.fit(X_train, y_train)
+
+y_pred_en = clf_entropy.predict(X_test)
+y_pred_train_en = clf_entropy.predict(X_train)
+
+print y_pred_en
+
+#print "Accuracy is ", accuracy_score(y_test,y_pred_en)*100
+
+print "test Accuracy is ", accuracy_score(y_test,y_pred_en)*100
+print "train Accuracy is ", accuracy_score(y_train,y_pred_train_en)*100
+
+print "testing error is ", (1-accuracy_score(y_test,y_pred_en))*100
+print "training error is ", (1-accuracy_score(y_train,y_pred_train_en))*100
+
+
+scores = cross_val_score(estimator=clf_gini,     # Model to test
+                X= X_train,
+                y = y_train,      # Target variable
+                scoring = "accuracy",               # Scoring metric
+                cv=10)                              # Cross validation folds
+
+scores=scores*100
+print("Accuracy per fold: ")
+print(scores)
+print("Average accuracy for gini using training data: ", scores.mean())
+
+#.......cross validation for gini index using test data ......
+
+scores_test = cross_val_score(estimator=clf_gini,     # Model to test
+                X= X_test,
+                y = y_test,      # Target variable
+                scoring = "accuracy",               # Scoring metric
+                cv=10)                              # Cross validation folds
+
+scores_test=scores_test*100
+print("Accuracy per fold: ")
+print(scores_test)
+print("Average accuracy for gini using test data: ", scores_test.mean())
+
+#.......cross validation for entropy  using training data ......
+en_scores = cross_val_score(estimator=clf_entropy,     # Model to test
+                X= X_train,
+                y = y_train,      # Target variable
+                scoring = "accuracy",               # Scoring metric
+                cv=10)                              # Cross validation folds
+
+en_scores=en_scores*100
+print("Accuracy per fold: ")
+print(en_scores)
+print("Average accuracy for entrpoy training: ", en_scores.mean())
+
+#.......cross validation for entropy using test data ......
+
+en_scores_test = cross_val_score(estimator=clf_entropy,     # Model to test
+                X= X_test,
+                y = y_test,                                 # Target variable
+                scoring = "accuracy",                       # Scoring metric
+                cv=10)                                      # Cross validation folds
+
+en_scores_test=en_scores_test*100
+print("Accuracy per fold: ")
+print(en_scores_test)
+print("Average accuracy for entropy testing: ", en_scores_test.mean())
+
+conf_matrix = metrics.confusion_matrix(y_test, y_pred_en)
+print conf_matrix
+
+conf_matrix2 = metrics.confusion_matrix(y_test, y_pred)
+print conf_matrix2
+
         
         
   
