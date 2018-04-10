@@ -201,7 +201,7 @@ print float(over_triage_count)/float(total_ones)
 
 #**********************************************************
 
-from sklearn.ensemble import BaggingClassifier
+from sklearn.ensemble import BaggingClassifier, AdaBoostClassifier
 
 #**********************************************************
 
@@ -228,3 +228,14 @@ print y_test
 
 print "The precision, recall and f-score of bagging are:"
 print (precision_recall_fscore_support(y_test, y_pred_bagging_list, average='macro'))
+
+#**********************************************************
+
+adb = AdaBoostClassifier(LogisticRegression(), n_estimators = 5, learning_rate = 0.5)
+adb.fit(X_train, Y_train)
+
+print "The boosting score for training data is: "
+print adb.score(X_train, Y_train)
+
+print "The boosting score for test data is: "
+print adb.score(X_test, Y_test)
