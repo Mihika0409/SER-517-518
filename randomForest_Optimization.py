@@ -44,7 +44,7 @@ df.columns = ['T1#', 'ED/Hosp Arrival Date', 'Age in Years', 'Gender', 'Levels',
 df = df.loc[df['Levels'].isin(['1', '2'])]
 
 print(df.shape)
-df = df[['Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Levels']]
+df = df[['Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Airbag Deployment', 'Levels']]
 cols = df.columns
 
 for col in cols:
@@ -63,23 +63,15 @@ df['Field HR']=df['Field HR'].replace(['*NA','*ND','*BL',''],'110')
 df['Field RR']=df['Field RR'].replace(['*NA','*ND','*BL',''],'21')
 df['RTS'] = df['RTS'].replace(['*NA','*ND','*BL',''],'7.65')
 df['Field GCS']=df['Field GCS'].replace(['*NA','*ND','*BL',''],'14.54')
+df['Airbag Deployment'] = df['Airbag Deployment'].replace(['*NA'], value=['0'])
 
-#The missing values imputed into the dataframe based on gender
-'''df['RTS'] = np.where(((df['RTS'] == '*NA') | (df['RTS'] == '*ND') | (df['RTS'] == '*BL') | (df['RTS'] == '')) & (df['Gender'] == 1),'6.15',df['RTS'])
-df['RTS'] = np.where(((df['RTS'] == '*NA') | (df['RTS'] == '*ND') | (df['RTS'] == '*BL') | (df['RTS'] == '')) & (df['Gender'] == 0),'7.75',df['RTS'])
-df['Field GCS'] = np.where(((df['Field GCS'] == '*NA') | (df['Field GCS'] == '*ND') | (df['Field GCS'] == '*BL') | (df['Field GCS'] == '')) & (df['Gender'] == 1),'10.24',df['Field GCS'])
-df['Field GCS'] = np.where(((df['Field GCS'] == '*NA') | (df['Field GCS'] == '*ND') | (df['Field GCS'] == '*BL') | (df['Field GCS'] == '')) & (df['Gender'] == 0),'14.90',df['Field GCS'])
-df['Field SBP'] = np.where(((df['Field SBP'] == '*NA') | (df['Field SBP'] == '*ND') | (df['Field SBP'] == '*BL') | (df['Field SBP'] == '')) & (df['Gender'] == 1),'111.50',df['Field SBP'])
-df['Field SBP'] = np.where(((df['Field SBP'] == '*NA') | (df['Field SBP'] == '*ND') | (df['Field SBP'] == '*BL') | (df['Field SBP'] == '')) & (df['Gender'] == 0),'120.25',df['Field SBP'])
-df['Field HR'] = np.where(((df['Field HR'] == '*NA') | (df['Field HR'] == '*ND') | (df['Field HR'] == '*BL') | (df['Field HR'] == '')) & (df['Gender'] == 1),'106',df['Field HR'])
-df['Field HR'] = np.where(((df['Field HR'] == '*NA') | (df['Field HR'] == '*ND') | (df['Field HR'] == '*BL') | (df['Field HR'] == '')) & (df['Gender'] == 0),'110',df['Field HR'])'''
 df['Levels'] = df['Levels'].replace(['1', '2'], value = [0 , 1])
 Y = df["Levels"]
 df = df.drop('Levels', axis = 1)
 
 def main():
     #df = pd.read_csv('/Users/vc/Downloads/Trauma_dataset.csv')
-    headers = ['Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS','Levels']
+    headers = ['Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS', 'Airbag Deployment', 'Levels']
     print(headers)
     # df = handle_missing_values(df, headers[7], None)
     train_x, test_x, train_y, test_y = train_test_split(df, Y, test_size=0.20, random_state=1)
