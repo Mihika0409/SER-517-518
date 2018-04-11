@@ -39,8 +39,6 @@ df.columns = ['T1#', 'ED/Hosp Arrival Date', 'Age in Years', 'Gender', 'Levels',
                'Early transfusion? (started 2016)', 'Severe TBI? (started 2016)', 'Time to 1st OR Visit (mins.)', 'Final Outcome-Dead or Alive', 'Hospital Disposition',
                'Injury Severity Score', 'ICD 9 Dx (before 2016)', 'ICD 10 Dx (after 1/2016)', 'AIS 2005']
 
-#print(df.head())
-
 df = df.loc[df['Levels'].isin(['1', '2'])]
 
 print(df.shape)
@@ -74,25 +72,12 @@ def main():
     headers = ['Age in Years', 'Gender','Field SBP', 'Field HR', 'Field Shock Index', 'Field RR', 'RTS', 'Field GCS', 'Airbag Deployment', 'Levels']
     print(headers)
     # df = handle_missing_values(df, headers[7], None)
-    train_x, test_x, train_y, test_y = train_test_split(df, Y, test_size=0.20, random_state=1)
+    train_x, test_x, train_y, test_y = train_test_split(df, Y, test_size=0.20, random_state=10)
 
     print("Train_x Shape :: ", train_x.shape)
     print("Train_y Shape :: ", train_y.shape)
     print("Test_x Shape :: ", test_x.shape)
     print("Test_y Shape :: ", test_y.shape)
-
-    # #Performing predictions
-    # trained_model = random_forest_classifier(train_x, train_y)
-    # print("Trained model :: ", trained_model)
-    # predictions = trained_model.predict(test_x)
-
-    # for i in range(0, 5):
-    #     print("Actual outcome :: {} and Predicted outcome :: {}".format(list(test_y)[i], predictions[i]))
-
-    # #Calculating Train and Test accuracy
-    # print("Train Accuracy :: ", accuracy_score(train_y, trained_model.predict(train_x)))
-    # print("Test Accuracy  :: ", accuracy_score(test_y, predictions))
-    # print(" Confusion matrix ", confusion_matrix(test_y, predictions))
 
     ran.fit(train_x, train_y)
     print("The ran values are:")
