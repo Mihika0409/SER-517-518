@@ -159,3 +159,26 @@ en_scores=en_scores*100
 print("Accuracy per fold: ")
 print(en_scores)
 print("Average accuracy for entrpoy training: ", en_scores.mean())
+
+#.......cross validation for entropy using test data ......
+
+en_scores_test = cross_val_score(estimator=clf_entropy,     # Model to test
+                X= X_test,
+                y = y_test,                                 # Target variable
+                scoring = "accuracy",                       # Scoring metric
+                cv=10)                                      # Cross validation folds
+
+en_scores_test=en_scores_test*100
+print("Accuracy per fold: ")
+print(en_scores_test)
+print("Average accuracy for entropy testing: ", en_scores_test.mean())
+
+# Confusion matrix  matrix with the Gini index
+conf_matrix = metrics.confusion_matrix(y_test, y_pred_en)
+print conf_matrix
+
+# confusion matrix with the entropy
+conf_matrix2 = metrics.confusion_matrix(y_test, y_pred)
+print conf_matrix2
+
+
