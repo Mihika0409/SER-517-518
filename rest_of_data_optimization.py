@@ -5,6 +5,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.decomposition import PCA
+from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
 from sklearn.metrics import confusion_matrix
@@ -201,7 +202,7 @@ print float(over_triage_count)/float(total_ones)
 
 #**********************************************************
 
-from sklearn.ensemble import BaggingClassifier, AdaBoostClassifier
+from sklearn.ensemble import BaggingClassifier, AdaBoostClassifier, VotingClassifier
 
 #**********************************************************
 
@@ -239,3 +240,19 @@ print adb.score(X_train, Y_train)
 
 print "The boosting score for test data is: "
 print adb.score(X_test, Y_test)
+
+#**********************************************************
+
+lr = LogisticRegression()
+dt = DecisionTreeClassifier()
+svm = SVC(kernel = 'poly', degree = 2 )
+
+vc = VotingClassifier( estimators= [('lr',lr),('dt',dt),('svm',svm)], voting = 'hard')
+vc.fit_transform(X_train, Y_train)
+
+print "The voting classifier score is: "
+print vc.score(X_test, Y_test)
+
+# Printing out the different metrics
+print "The precision, recall and f-score are:"
+print (precision_recall_fscore_support(Y_test, vc.predict(X_test), average='macro'))
