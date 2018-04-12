@@ -87,6 +87,17 @@ print "train Accuracy is ", accuracy_score(y_train,y_pred_train)*100
 print "testing error is ", (1-accuracy_score(y_test,y_pred))*100
 print "training error is ", (1-accuracy_score(y_train,y_pred_train))*100
 
+# Code to append a new intubated column to data.
+with open('/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata.csv', 'rb') as inp, open(
+        '/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata1.csv', 'wb') as out:
+    writer = csv.writer(out)
+    for row in csv.reader(inp):
+        if "intubated" in row[9].lower():
+            row.append('1')
+        else:
+            row.append('0')
+        writer.writerow(row)
+
 # decision tree with the information gain
 clf_entropy = DecisionTreeClassifier(criterion = "entropy", random_state = 100,max_depth=3, min_samples_leaf=5)
 
