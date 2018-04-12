@@ -1,4 +1,4 @@
- 
+
 use Trauma;
  
  
@@ -25,9 +25,10 @@ where tid <>0 and icd_code like '% fall%'
 or icd_code_9 like '% fall%' 
 and transport_mode <> 'Private/Public Vehicle/Walk-in'
 limit  50000
-                           
 
- import pandas as pd
+
+
+import pandas as pd
 from sklearn.preprocessing import StandardScaler,LabelEncoder
 from sklearn import tree, metrics
 from sklearn.tree import DecisionTreeClassifier
@@ -66,23 +67,33 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_
 dt = tree.DecisionTreeClassifier()
 dt = dt.fit(X_train,y_train)
 
-#y_train_pred = dt.predict(X_train)
-#y_test_pred = dt.predict(X_test)
-
-#print('MSE train: %.3f, test: %.3f' % ( mean_squared_error(y_train, y_train_pred), mean_squared_error(y_test, y_test_pred)))
 
 
-#decision trees with the gini index
-clf_gini = DecisionTreeClassifier(criterion = "gini", random_state = 100,max_depth=3, min_samples_leaf=5)
-#clf_gini = DecisionTreeClassifier(criterion = "gini", random_state = 100)
-clf_gini.fit(X_train, y_train)
+# Code to append a new intubated column to data.
+with open('/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata.csv', 'rb') as inp, open(
+        '/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata1.csv', 'wb') as out:
+    writer = csv.writer(out)
+    for row in csv.reader(inp):
+        if "intubated" in row[9].lower():
+            row.append('1')
+        else:
+            row.append('0')
+        writer.writerow(row)
 
-y_pred = clf_gini.predict(X_test)
-y_pred_train = clf_gini.predict(X_train)
-
-print y_pred
-
-print "test Accuracy is ", accuracy_score(y_test,y_pred)*100
+# Modified the RespAssistance Column.
+with open('/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata1.csv', 'rb') as inp, open(
+        '/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata2.csv', 'wb') as out:
+    writer = csv.writer(out)
+    for row in csv.reader(inp):
+        if row[21] == "Assisted Respiratory Rate":
+            row[21] = '1'
+        else:
+            row[21] = '0'
+        writer.writerow(row)
+        
+        
+        
+  print "test Accuracy is ", accuracy_score(y_test,y_pred)*100
 print "train Accuracy is ", accuracy_score(y_train,y_pred_train)*100
 
 print "testing error is ", (1-accuracy_score(y_test,y_pred))*100
@@ -157,12 +168,12 @@ print("Accuracy per fold: ")
 print(en_scores_test)
 print("Average accuracy for entropy testing: ", en_scores_test.mean())
 
-# Confusion matrix  matrix with the Gini index
 conf_matrix = metrics.confusion_matrix(y_test, y_pred_en)
 print conf_matrix
 
-# confusion matrix with the entropy
 conf_matrix2 = metrics.confusion_matrix(y_test, y_pred)
 print conf_matrix2
 
-
+        
+        
+  
