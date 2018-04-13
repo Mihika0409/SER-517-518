@@ -41,6 +41,23 @@ df.columns = ['T1#', 'ED/Hosp Arrival Date', 'Age in Years', 'Gender', 'Levels',
 
 df = df.loc[df['Levels'].isin(['1', '2'])]
 
+df_assault_icd9 = df[df['ICD-9 E-code (before 2016)'].str.contains(r'^(?:(?!FALL|MOTOR|CAR).)*$', na=False)]
+
+# df_assault_icd9 =  df['A'].str.contains(r'^(?:(?!ASSAULT|World).)*$')
+print ("Number of rows:")
+print (len(df_assault_icd9))
+
+# Taking the rows which do not contain the words FALL, MOTOR or CAR (na = False means that it igoners the rows with NaN values)
+df_assault_icd10 = df[df['ICD-10 E-code (after 1/2016)'].str.contains(r'^(?:(?!FALL|MOTOR|CAR).)*$', na=False)]
+print ("Number of rows:")
+print (len(df_assault_icd10))
+
+# Combining data of both icd 9 and icd 10 codes
+frames = [df_assault_icd9, df_assault_icd10]
+result = pd.concat(frames)
+print ("Number of rows in complete dataframe:")
+print (len(result))
+
 print(df.shape)
 df = df[['Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Airbag Deployment', 'Levels']]
 cols = df.columns
