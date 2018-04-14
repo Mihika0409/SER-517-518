@@ -97,6 +97,17 @@ with open('/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata.csv', 'rb') as
         else:
             row.append('0')
         writer.writerow(row)
+        
+  # Modified the RespAssistance Column.
+with open('/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata1.csv', 'rb') as inp, open(
+        '/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata2.csv', 'wb') as out:
+    writer = csv.writer(out)
+    for row in csv.reader(inp):
+        if row[21] == "Assisted Respiratory Rate":
+            row[21] = '1'
+        else:
+            row[21] = '0'
+        writer.writerow(row)
 
 # decision tree with the information gain
 clf_entropy = DecisionTreeClassifier(criterion = "entropy", random_state = 100,max_depth=3, min_samples_leaf=5)
