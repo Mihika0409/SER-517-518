@@ -55,6 +55,13 @@ df = df.loc[df['Levels'].isin(['1', '2'])]
 le = LabelEncoder()
 df['Gender'] = le.fit_transform(df['Gender'].values)
 
+df['RTS']= df['RTS'].replace(['*NA', '*ND', '*BL',''], '7.65')
+df['Field GCS']= df['Field GCS'].replace(['*NA', '*ND', '*BL',''], '14.54')
+df['Field SBP']= df['Field SBP'].replace(['*NA', '*ND', '*BL',''], '119')
+df['Field HR']= df['Field HR'].replace(['*NA', '*ND', '*BL',''], '110 ')
+df['Field RR']= df['Field RR'].replace(['*NA', '*ND', '*BL',''], '21')
+df['Fall Height']= df['Fall Height'].replace(['*NA', '*ND', '*BL',''], '0')
+
 print df.head()
 
 
@@ -110,7 +117,7 @@ with open('/Users/gowtham/Desktop/SER-517&518/Fall_trauma_newdata1.csv', 'rb') a
         writer.writerow(row)
 
 # decision tree with the information gain
-clf_entropy = DecisionTreeClassifier(criterion = "entropy", random_state = 100,max_depth=3, min_samples_leaf=5)
+clf_entropy = DecisionTreeClassifier(criterion = "entropy", random_state = 100,max_depth=3, min_samples_leaf=5,class_weight="balanced")
 
 #clf_entropy = DecisionTreeClassifier(criterion = "entropy", random_state = 100)
 clf_entropy.fit(X_train, y_train)
