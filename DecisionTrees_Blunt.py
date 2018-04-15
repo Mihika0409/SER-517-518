@@ -49,6 +49,7 @@ fallDF['Gender'] = fallDF['Gender'].replace(['M', 'F'], value=['1', '2'])
 
 fallDF['Fall Height'] = fallDF['Fall Height'].replace(['*NA', '*ND', '*BL'], value=['5','5','5'])
 
+fallDF['Injury Severity Score'] = fallDF['Injury Severity Score'].replace(['*NA', '*ND', '*BL'], value=['5','5','5'])
 
 fallDF['Field SBP'] = fallDF['Field SBP'].replace(['*NA', '*ND', '*BL'], value=['76','76','76'])
 
@@ -115,5 +116,9 @@ for x in range(0, len(y_pred)):
 
 print "over triage percentage ="
 print float(triage_count)/float(len(Y_pred))
+
+
+print "UnderTriage Percentage ="
+print (tn + fp)/tp
 
 
