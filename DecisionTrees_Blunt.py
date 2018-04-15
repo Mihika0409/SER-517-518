@@ -7,7 +7,7 @@ from sklearn.decomposition import PCA
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support
 
-df = pd.read_excel('NewFallDataset.xlsx', header=None)
+df = pd.read_excel('NewBluntDataset.xlsx', header=None)
 
 df.columns = ['T1', 'ED/Hosp Arrival Date', 'Age in Years', 'Gender', 'Levels', 'ICD-10 E-code', 'ICD-9 E-code',
               'Trauma Type', 'Report of physical abuse',
@@ -22,8 +22,8 @@ df.columns = ['T1', 'ED/Hosp Arrival Date', 'Age in Years', 'Gender', 'Levels', 
               'Final Outcome-Dead or Alive', 'Hospital Disposition', 'Injury Severity Score', 'ICD 9 Dx (before 2016)',
               'ICD 10 Dx (after 1/2016)', 'AIS 2005']
 
-FallICD09 = df[df['ICD-9 E-code'].str.contains("BLUNT", na=False)]
-fallDF = FallICD09
+
+fallDF = df
 
 columns = ['T1', 'ED/Hosp Arrival Date', 'Age in Years', 'Gender', 'Levels', 'ICD-10 E-code', 'ICD-9 E-code',
            'Trauma Type', 'Report of physical abuse',
@@ -41,15 +41,14 @@ columns = ['T1', 'ED/Hosp Arrival Date', 'Age in Years', 'Gender', 'Levels', 'IC
 for i in columns:
     fallDF = fallDF[pd.notnull(fallDF[i])]
 
-fallDF = fallDF.loc[fallDF['Levels'].isin(['1', '2'])]
-
-
 fallDF = fallDF[
-    ['Levels', 'Fall Height', 'Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Report of physical abuse','Trauma Type','Airbag Deployment']]
+    ['Levels', 'Fall Height', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Report of physical abuse','Trauma Type',]]
 
 fallDF['Gender'] = fallDF['Gender'].replace(['M', 'F'], value=['1', '2'])
 
+
 fallDF['Fall Height'] = fallDF['Fall Height'].replace(['*NA', '*ND', '*BL'], value=['5','5','5'])
+
 
 fallDF['Field SBP'] = fallDF['Field SBP'].replace(['*NA', '*ND', '*BL'], value=['76','76','76'])
 
@@ -61,7 +60,7 @@ fallDF['RTS'] = fallDF['RTS'].replace(['*NA', '*ND', '*BL'], value=['3.396134969
 
 fallDF['Field GCS'] = fallDF['Field GCS'].replace(['*NA', '*ND', '*BL'], value=['9','9','9'])
 
-fallDF['Age in Years'] = fallDF['Age in Years'].replace(['*NA', '*ND', '*BL'], value=['6','6','6'])
+# fallDF['Age in Years'] = fallDF['Age in Years'].replace(['*NA', '*ND', '*BL'], value=['6','6','6'])
 
 fallDF['Report of physical abuse'] = fallDF['Report of physical abuse'].replace(['*BL'], value=['N'])
 
@@ -69,7 +68,7 @@ fallDF['Report of physical abuse'] = fallDF['Report of physical abuse'].replace(
 
 fallDF['Trauma Type'] = fallDF['Trauma Type'].replace(['Blunt','Penetrating'], value = ['1','0'])
 
-fallDF['Airbag Deployment'] = fallDF['Airbag Deployment'].replace(['*NA'], value = ['0'])
+# fallDF['Airbag Deployment'] = fallDF['Airbag Deployment'].replace(['*NA'], value = ['0'])
 
 
 
