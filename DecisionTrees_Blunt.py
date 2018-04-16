@@ -42,14 +42,12 @@ for i in columns:
     fallDF = fallDF[pd.notnull(fallDF[i])]
 
 fallDF = fallDF[
-    ['Levels', 'Fall Height', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Report of physical abuse','Trauma Type',]]
+    ['Levels', 'Fall Height', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Report of physical abuse','Trauma Type','MV Speed']]
 
 fallDF['Gender'] = fallDF['Gender'].replace(['M', 'F'], value=['1', '2'])
 
 
 fallDF['Fall Height'] = fallDF['Fall Height'].replace(['*NA', '*ND', '*BL'], value=['5','5','5'])
-
-fallDF['Injury Severity Score'] = fallDF['Injury Severity Score'].replace(['*NA', '*ND', '*BL'], value=['5','5','5'])
 
 fallDF['Field SBP'] = fallDF['Field SBP'].replace(['*NA', '*ND', '*BL'], value=['76','76','76'])
 
@@ -61,15 +59,14 @@ fallDF['RTS'] = fallDF['RTS'].replace(['*NA', '*ND', '*BL'], value=['3.396134969
 
 fallDF['Field GCS'] = fallDF['Field GCS'].replace(['*NA', '*ND', '*BL'], value=['9','9','9'])
 
-# fallDF['Age in Years'] = fallDF['Age in Years'].replace(['*NA', '*ND', '*BL'], value=['6','6','6'])
-
 fallDF['Report of physical abuse'] = fallDF['Report of physical abuse'].replace(['*BL'], value=['N'])
 
 fallDF['Report of physical abuse'] = fallDF['Report of physical abuse'].replace(['N','Y'], value=['0','1'])
 
 fallDF['Trauma Type'] = fallDF['Trauma Type'].replace(['Blunt','Penetrating'], value = ['1','0'])
 
-# fallDF['Airbag Deployment'] = fallDF['Airbag Deployment'].replace(['*NA'], value = ['0'])
+fallDF['MV Speed'] = fallDF['MV Speed'].replace(['*NA', '*ND', '*BL'], value=['21','21','21'])
+
 
 
 
