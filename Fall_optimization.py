@@ -211,3 +211,33 @@ conf_matrix2 = metrics.confusion_matrix(y_test, y_pred)
 print conf_matrix2
 
 
+
+The confusion matrices and over triage rates are as follows for fall data:
+***************** Confusion Matrices for fall data with balancing the weights  for Gini and entropy *******************
+[[ 14 53] 
+ [ 0 211]] 
+******************************* Entropy**********************
+[[ 50 17] 
+ [ 82 129]]
+**********************Confusion Matrices for fall data with  out  balancing the weights for Gini and entropy************
+
+[[ 18 23] 
+ [ 14 132]] 
+**************************Entropy***************************
+[[ 15 26]
+ [ 7 139]]
+
+
+The over Triage rate in term of level 1 is turned out to be 31 % for the fall data 
+And the under triage rate is turned out to be 50% for the fall data.
+
+
+*******************After Intubation ***********************
+
+[[ 29  38]
+ [  9 202]]
+
+
+[[ 29  38]
+ [ 10 201]]
+
