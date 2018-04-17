@@ -1,4 +1,5 @@
 import pandas as pd
+import csv
 import sklearn.preprocessing as sk
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -42,6 +43,16 @@ df.columns = ['T1#', 'ED/Hosp Arrival Date', 'Age in Years', 'Gender', 'Levels',
 #print(df.head())
 
 df = df.loc[df['Levels'].isin(['1', '2'])]
+
+#Code to append a new intubated column to data.
+with open('/Users/vc/Documents/Susmitha Documents/Software Factory/TraumaFullData.csv', 'rb') as inp, open('/Users/vc/Documents/Susmitha Documents/Software Factory/TraumaFullData.csv', 'wb') as out:
+    writer = csv.writer(out)
+    for row in csv.reader(inp):
+        if "Intubated" in row[9].lower():
+            row.append('1')
+        else:
+            row.append('0')
+        writer.writerow(row)
 
 print(df.shape)
 df = df[['Age in Years', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Levels']]
