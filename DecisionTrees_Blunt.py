@@ -42,7 +42,7 @@ for i in columns:
     fallDF = fallDF[pd.notnull(fallDF[i])]
 
 fallDF = fallDF[
-    ['Levels', 'Fall Height', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Report of physical abuse','Trauma Type','MV Speed']]
+    ['Levels', 'Fall Height', 'Gender', 'Field SBP', 'Field HR', 'Field RR', 'RTS', 'Field GCS', 'Report of physical abuse','Trauma Type','MV Speed','Total Days in ICU']]
 
 fallDF['Gender'] = fallDF['Gender'].replace(['M', 'F'], value=['1', '2'])
 
@@ -67,7 +67,7 @@ fallDF['Trauma Type'] = fallDF['Trauma Type'].replace(['Blunt','Penetrating'], v
 
 fallDF['MV Speed'] = fallDF['MV Speed'].replace(['*NA', '*ND', '*BL'], value=['21','21','21'])
 
-
+fallDF['Total Days in ICU'] = fallDF['Total Days in ICU'].replace(['*NA', '*ND', '*BL'], value=['2','2','2'])
 
 
 y = fallDF['Levels']
