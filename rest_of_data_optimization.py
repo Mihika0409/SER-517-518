@@ -1,5 +1,8 @@
 import pandas as pd
+import numpy as np
 import sklearn.preprocessing as sk
+from pyexpat import model
+from sklearn import metrics
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
@@ -153,6 +156,25 @@ print over_triage_count
 print "The over triage percentage for Logistic Regression is:"
 print float(over_triage_count)/float(total_ones)
 
+#Under Triage
+
+under_triage_count = 0;
+total_ones_under = 0
+
+for x in range(0, len(y_pred)):
+    if Y_pred[x] == '2' and y_test[x] == '1':
+        under_triage_count = under_triage_count + 1
+
+for x in range(0, len(y_pred)):
+    if y_test[x] == '1':
+        total_ones_under = total_ones_under + 1
+
+print "The over triage percentage for Decision Tree is:"
+print float(over_triage_count)/float(total_ones)
+
+print "The under triage percentage for Decision Tree is:"
+print float(under_triage_count)/float(total_ones_under)
+
 #*************************************************************************
 # Decision Tree
 
@@ -182,11 +204,13 @@ print "The precision, recall and f-score are:"
 print (precision_recall_fscore_support(Y_test, y_pred, average='macro'))
 
 over_triage_count = 0;
+
 total_ones = 0
 
 y_test = Y_test.tolist()
 Y_pred = y_pred.tolist()
 
+#Over Triage
 for x in range(0, len(y_pred)):
     if Y_pred[x] == '1' and y_test[x] == '2':
         over_triage_count = over_triage_count + 1
@@ -197,8 +221,24 @@ for x in range(0, len(y_pred)):
 
 print over_triage_count
 
+#Under Triage
+
+under_triage_count = 0;
+total_ones_under = 0
+
+for x in range(0, len(y_pred)):
+    if Y_pred[x] == '2' and y_test[x] == '1':
+        under_triage_count = under_triage_count + 1
+
+for x in range(0, len(y_pred)):
+    if y_test[x] == '1':
+        total_ones_under = total_ones_under + 1
+
 print "The over triage percentage for Decision Tree is:"
 print float(over_triage_count)/float(total_ones)
+
+print "The under triage percentage for Decision Tree is:"
+print float(under_triage_count)/float(total_ones_under)
 
 #**********************************************************
 
@@ -241,6 +281,40 @@ print adb.score(X_train, Y_train)
 print "The boosting score for test data is: "
 print adb.score(X_test, Y_test)
 
+#**********************************************************
+from sklearn.model_selection import GridSearchCV
+param_range = [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+
+# Applying Logistic regression on the pre factors
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.20, random_state=1)
+
+classification_pipeline = Pipeline([('classifier',LogisticRegression(random_state=1))])
+
+# note that a list of available parameters to tune can be displayed by typing this in the console:
+# classification_pipeline.get_params().keys()
+
+
+print('Paramters available for tuning:', classification_pipeline.get_params().keys())
+
+
+# also note that the param name is constructed as the string name given to it
+# in the pipeline constructor followed by 2 underscores and then the param name
+
+param_grid = [{'classifier__penalty':['l1', 'l2'], 'classifier__C': param_range}]
+
+
+# note that in the above line each set of items enclosed in {} defines one grid
+# here we only have one grid, but we could have multiple grids to explore
+
+
+
+gs = GridSearchCV(estimator=classification_pipeline,
+          param_grid=param_grid, scoring= 'accuracy', cv=10,
+          n_jobs=-1)
+
+gs = gs.fit(X_train, Y_train)
+print('Best accuracy score:',gs.best_score_)
+print('Best Parameters:',gs.best_params_)
 #**********************************************************
 
 lr = LogisticRegression()
